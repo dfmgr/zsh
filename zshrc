@@ -19,18 +19,17 @@ path=("$HOME/.local/bin" $path)
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# Enable completion (this needs to be done before sourcing plugins)
+autoload -Uz compinit && compinit
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # Add user functions to $fpath
 fpath=("$HOME/.config/zsh/functions" $fpath)
 
 for f in "$HOME/.config/zsh/functions/"*.zsh ; do
-source $f
+  source $f 2>/dev/null
 done
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# Enable completion (this needs to be done before sourcing plugins)
-autoload -Uz compinit && compinit
-
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
