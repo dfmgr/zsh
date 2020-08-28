@@ -1,4 +1,4 @@
-## zsh scripts  
+## zsh  
   
 Zsh is a shell designed for interactive use  
   
@@ -8,11 +8,33 @@ Automatic install/update:
 bash -c "$(curl -LSs https://github.com/dfmgr/zsh/raw/master/install.sh)"
 ```
 
-Manual install:  
+Manual install:
+  
 requires:
-apt: ```apt install zsh```  
-yum: ```yum install zsh```  
-pacman: ```pacman -S zsh```  
+
+Debian based:
+
+```shell
+apt install zsh
+```  
+
+Fedora Based:
+
+```shell
+yum install zsh
+```  
+
+Arch Based:
+
+```shell
+pacman -S zsh
+```  
+
+MacOS:  
+
+```shell
+brew install zsh
+```
   
 ```shell
 mv -fv "$HOME/.config/zsh" "$HOME/.config/zsh.bak"
@@ -23,8 +45,7 @@ git_clone https://github.com/zsh-users/zsh-syntax-highlighting $HOME/.local/shar
 git_clone https://github.com/bhilburn/powerlevel9k.git $HOME/.local/share/oh-my-zsh/custom/themes/powerlevel9k
 ```
   
-  
 <p align=center>
-  <a href="https://wiki.archlinux.org/index.php/zsh" target="_blank">zsh wiki</a>  |  
-  <a href="http://zsh.sourceforge.net" target="_blank">zsh site</a>
+  <a href="https://wiki.archlinux.org/index.php/zsh" target="_blank" rel="noopener noreferrer">zsh wiki</a>  |  
+  <a href="http://zsh.sourceforge.net" target="_blank" rel="noopener noreferrer">zsh site</a>
 </p>  
