@@ -168,31 +168,31 @@ if [ "$PLUGNAMES" != "" ]; then
 
   if [ -d "$PLUGDIR/custom/plugins/zsh-syntax-highlighting/.git" ]; then
     execute \
-    "git_update $PLUGDIR/custom/plugins/zsh-syntax-highlighting" \
+    "git_update $PLUGDIR/oh-my-zsh/custom/plugins/zsh-syntax-highlighting" \
     "Updating zsh-syntax-highlighting"
   else
     execute \
-    "git_clone https://github.com/zsh-users/zsh-syntax-highlighting $PLUGDIR/custom/plugins/zsh-syntax-highlighting" \
+    "git_clone https://github.com/zsh-users/zsh-syntax-highlighting $PLUGDIR/oh-my-zsh/custom/plugins/zsh-syntax-highlighting" \
     "Installing zsh-syntax-highlighting"
   fi
 
-  if [ -d "$PLUGDIR/custom/themes/powerlevel9k/.git" ]; then
+  if [ -d "$PLUGDIR/oh-my-zsh/custom/themes/powerlevel9k/.git" ]; then
     execute \
-    "git_update $PLUGDIR/custom/themes/powerlevel9k" \
+    "git_update $PLUGDIR/oh-my-zsh/custom/themes/powerlevel9k" \
     "Updating powerlevel9k"
   else
     execute \
-    "git_clone https://github.com/bhilburn/powerlevel9k.git $PLUGDIR/custom/themes/powerlevel9k" \
+    "git_clone https://github.com/bhilburn/powerlevel9k.git $PLUGDIR/oh-my-zsh/custom/themes/powerlevel9k" \
     "Installing powerlevel9k"
   fi
 
-  if [ -d "$PLUGDIR/custom/themes/powerlevel10k/.git" ]; then
+  if [ -d "$PLUGDIR/oh-my-zsh/custom/themes/powerlevel10k/.git" ]; then
     execute \
-    "git_update $PLUGDIR/custom/themes/powerlevel10k" \
+    "git_update $PLUGDIR/oh-my-zsh/custom/themes/powerlevel10k" \
     "Updating powerlevel10k"
   else
     execute \
-    "git_clone https://github.com/romkatv/powerlevel10k.git $PLUGDIR/custom/themes/powerlevel10k" \
+    "git_clone https://github.com/romkatv/powerlevel10k.git $PLUGDIR/oh-my-zsh/custom/themes/powerlevel10k" \
     "Installing powerlevel10k"
   fi
 fi
