@@ -2,7 +2,10 @@
 
 #zsh config
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# allow insecure directories and files
+ZSH_DISABLE_COMPFIX="true"
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # ensure exports is loaded
 source "$HOME/.config/zsh/profile/00-exports.zsh"
 
