@@ -22,8 +22,14 @@ path=("$HOME/.local/bin" $path)
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# enable brew.sh completions
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+fi
+
+
 # Enable completion (this needs to be done before sourcing plugins)
-autoload -Uz compinit && compinit
+autoload -Uz compinit compinit
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
