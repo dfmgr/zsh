@@ -52,7 +52,7 @@ APPNAME="${APPNAME:-zsh}"
 APPDIR="${APPDIR:-$HOME/.config/$APPNAME}"
 REPO="${DFMGRREPO:-https://github.com/dfmgr}/${APPNAME}"
 REPORAW="${REPORAW:-$REPO/raw}"
-APPVERSION="$(curl -LSs $REPORAW/master/version.txt)"
+APPVERSION="$(__appversion)"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -137,15 +137,15 @@ ensure_perms
 
 # Main progam
 
-if [ -d "$APPDIR/.git" ]; then
+if [ -d "$DOWNLOADED_TO/.git" ]; then
   execute \
-  "git_update $APPDIR" \
-  "Updating $APPNAME configurations"
+    "git_update $APPDIR" \
+    "Updating $APPNAME configurations"
 else
   execute \
-  "backupapp && \
+    "backupapp && \
         git_clone -q $REPO/$APPNAME $APPDIR" \
-  "Installing $APPNAME configurations"
+    "Installing $APPNAME configurations"
 fi
 
 # exit on fail
@@ -158,42 +158,42 @@ failexitcode
 if [ "$PLUGNAMES" != "" ]; then
   if [ -d "$PLUGDIR"/oh-my-zsh/.git ]; then
     execute \
-    "git_update $PLUGDIR/oh-my-zsh" \
-    "Updating plugin oh-my-zsh"
+      "git_update $PLUGDIR/oh-my-zsh" \
+      "Updating plugin oh-my-zsh"
   else
     execute \
-    "git_clone https://github.com/robbyrussell/oh-my-zsh $PLUGDIR/oh-my-zsh" \
-    "Installing plugin oh-my-zsh"
+      "git_clone https://github.com/robbyrussell/oh-my-zsh $PLUGDIR/oh-my-zsh" \
+      "Installing plugin oh-my-zsh"
   fi
 
   if [ -d "$PLUGDIR/custom/plugins/zsh-syntax-highlighting/.git" ]; then
     execute \
-    "git_update $PLUGDIR/oh-my-zsh/custom/plugins/zsh-syntax-highlighting" \
-    "Updating zsh-syntax-highlighting"
+      "git_update $PLUGDIR/oh-my-zsh/custom/plugins/zsh-syntax-highlighting" \
+      "Updating zsh-syntax-highlighting"
   else
     execute \
-    "git_clone https://github.com/zsh-users/zsh-syntax-highlighting $PLUGDIR/oh-my-zsh/custom/plugins/zsh-syntax-highlighting" \
-    "Installing zsh-syntax-highlighting"
+      "git_clone https://github.com/zsh-users/zsh-syntax-highlighting $PLUGDIR/oh-my-zsh/custom/plugins/zsh-syntax-highlighting" \
+      "Installing zsh-syntax-highlighting"
   fi
 
   if [ -d "$PLUGDIR/oh-my-zsh/custom/themes/powerlevel9k/.git" ]; then
     execute \
-    "git_update $PLUGDIR/oh-my-zsh/custom/themes/powerlevel9k" \
-    "Updating powerlevel9k"
+      "git_update $PLUGDIR/oh-my-zsh/custom/themes/powerlevel9k" \
+      "Updating powerlevel9k"
   else
     execute \
-    "git_clone https://github.com/bhilburn/powerlevel9k.git $PLUGDIR/oh-my-zsh/custom/themes/powerlevel9k" \
-    "Installing powerlevel9k"
+      "git_clone https://github.com/bhilburn/powerlevel9k.git $PLUGDIR/oh-my-zsh/custom/themes/powerlevel9k" \
+      "Installing powerlevel9k"
   fi
 
   if [ -d "$PLUGDIR/oh-my-zsh/custom/themes/powerlevel10k/.git" ]; then
     execute \
-    "git_update $PLUGDIR/oh-my-zsh/custom/themes/powerlevel10k" \
-    "Updating powerlevel10k"
+      "git_update $PLUGDIR/oh-my-zsh/custom/themes/powerlevel10k" \
+      "Updating powerlevel10k"
   else
     execute \
-    "git_clone https://github.com/romkatv/powerlevel10k.git $PLUGDIR/oh-my-zsh/custom/themes/powerlevel10k" \
-    "Installing powerlevel10k"
+      "git_clone https://github.com/romkatv/powerlevel10k.git $PLUGDIR/oh-my-zsh/custom/themes/powerlevel10k" \
+      "Installing powerlevel10k"
   fi
 fi
 
@@ -206,12 +206,12 @@ failexitcode
 
 run_postinst() {
   dfmgr_run_post
-  ln_sf "$APPDIR/zshrc" "$HOME/.zshrc"
+  ln_sf "$DOWNLOADED_TO/zshrc" "$HOME/.zshrc"
 }
 
 execute \
-"run_postinst" \
-"Running post install scripts"
+  "run_postinst" \
+  "Running post install scripts"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
