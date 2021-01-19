@@ -155,6 +155,7 @@ failexitcode
 
 # Plugins
 
+if __am_i_online; then
 if [ "$PLUGNAMES" != "" ]; then
   if [ -d "$PLUGDIR"/oh-my-zsh/.git ]; then
     execute \
@@ -195,6 +196,7 @@ if [ "$PLUGNAMES" != "" ]; then
       "git_clone https://github.com/romkatv/powerlevel10k.git $PLUGDIR/oh-my-zsh/custom/themes/powerlevel10k" \
       "Installing powerlevel10k"
   fi
+fi
 fi
 
 # exit on fail
