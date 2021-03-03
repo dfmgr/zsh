@@ -36,7 +36,7 @@ autoload -Uz compinit compinit
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Add user functions to $fpath
 fpath=("$HOME/.config/zsh/functions" $fpath)
-for f in "$HOME/.config/zsh/functions/"*.zsh ; do
+for f in "$HOME/.config/zsh/functions/"*.zsh; do
   source $f 2>/dev/null
 done
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -58,12 +58,12 @@ fi
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Make sure oh-my-zsh is loaded
 if [[ -f "$HOME/.local/share/zsh/oh-my-zsh/oh-my-zsh.sh" ]]; then
-    source "$HOME/.config/zsh/profile/00-oh-my-zsh.zsh" 2>/dev/null
-    source "$HOME/.local/share/zsh/oh-my-zsh/oh-my-zsh.sh" 2>/dev/null
+  source "$HOME/.config/zsh/profile/00-oh-my-zsh.zsh" 2>/dev/null
+  source "$HOME/.local/share/zsh/oh-my-zsh/oh-my-zsh.sh" 2>/dev/null
 fi
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # $fpath should not be empty for this to work.
-for func in $^fpath/*(N-.x:t); autoload -U $func
+for func in $^fpath/*(N-.x:t); do autoload -U $func; done
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Enable edit-command-line
 autoload -U edit-command-line
@@ -112,24 +112,24 @@ setopt CORRECT
 setopt SHARE_HISTORY
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Split words on slashes (useful for paths)
-WORDCHARS=${WORDCHARS/\/}
+WORDCHARS=${WORDCHARS/\//}
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Remove duplicates in path variables
 typeset -gU path fpath cdpath manpath
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Source users file
 if [[ -f "$HOME/.config/local/zsh.local" ]]; then
-    source "$HOME/.config/local/zsh.local" 2>/dev/null
+  source "$HOME/.config/local/zsh.local" 2>/dev/null
 fi
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Source users file
 if [[ -f "$HOME/.config/local/zsh.servers.local" ]]; then
-    source "$HOME/.config/local/zsh.server.local" 2>/dev/null
+  source "$HOME/.config/local/zsh.server.local" 2>/dev/null
 fi
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Source system specific
 if [[ -f "$HOME/.config/local/zsh."$(hostname)".local" ]]; then
-    source "$HOME/.config/local/zsh."$(hostname)".local" 2>/dev/null
+  source "$HOME/.config/local/zsh."$(hostname)".local" 2>/dev/null
 fi
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 export SRCZSHRC="$HOME/.zshrc"

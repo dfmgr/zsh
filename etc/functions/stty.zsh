@@ -1,9 +1,9 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # @Author      : Jason
 # @Contact     : casjaysdev@casjay.net
-# @File        : stty.bash
+# @File        : stty.zsh
 # @Created     : Mon, Dec 31, 2019, 00:00 EST
 # @License     : WTFPL
 # @Copyright   : Copyright (c) CasjaysDev

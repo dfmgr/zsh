@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env zsh
 
 case "$(uname -s)" in
 CYGWIN* | MINGW32* | MSYS* | MINGW*)

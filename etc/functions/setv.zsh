@@ -1,9 +1,9 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # @Author      : Sachin (psachin)
 # @Contact     : iclcoolster@gmail.com
-# @File        : show_wifi_clients.bash
+# @File        : show_wifi_clients.zsh
 # @Created     : Mon, Dec 31, 2019, 00:00 EST
 # @License     : WTFPL
 # @Copyright   : Copyright (c) CasjaysDev
