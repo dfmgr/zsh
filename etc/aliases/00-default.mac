@@ -4,6 +4,7 @@
 [ -f "$(command -v gdate 2>/dev/null)" ] && alias date='gdate '
 alias q='exit'
 alias :q='exit'
+alias :w='history -a'
 alias :q!='exit'
 alias c='clear'
 alias ch='history -c && > ~/.bash_history'
