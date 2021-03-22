@@ -1,16 +1,18 @@
-#!/usr/bin/env bash
-
+#!/usr/bin/env zsh
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# @Author      : Jason
-# @Contact     : casjaysdev@casjay.net
-# @File        : python.zsh
-# @Created     : Mon, Dec 31, 2019, 00:00 EST
-# @License     : WTFPL
-# @Copyright   : Copyright (c) CasjaysDev
-# @Description : set python version function
-#
+##@Version       : 202103212101-git
+# @Author        : Jason Hempstead
+# @Contact       : jason@casjaysdev.com
+# @License       : WTFPL
+# @ReadME        : python.zsh --help
+# @Copyright     : Copyright: (c) 2021 Jason Hempstead, CasjaysDev
+# @Created       : Sunday, Mar 21, 2021 21:01 EDT
+# @File          : python.zsh
+# @Description   : Set python version function
+# @TODO          :
+# @Other         :
+# @Resource      :
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 getpythonver() {
   if [[ "$(python3 -V 2>/dev/null)" =~ "Python 3" ]]; then
     PYTHONVER="python3"
@@ -22,5 +24,4 @@ getpythonver() {
     export PATH="${PATH}:$(python -c 'import site; print(site.USER_BASE)')/bin"
   fi
 }
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

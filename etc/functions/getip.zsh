@@ -1,18 +1,19 @@
 #!/usr/bin/env zsh
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# @Author      : Jason
-# @Contact     : casjaysdev@casjay.net
-# @File        : getip.zsh
-# @Created     : Mon, Dec 31, 2019, 00:00 EST
-# @License     : WTFPL
-# @Copyright   : Copyright (c) CasjaysDev
-# @Description : get ip address
-#
+##@Version       : 202103212043-git
+# @Author        : Jason Hempstead
+# @Contact       : jason@casjaysdev.com
+# @License       : WTFPL
+# @ReadME        : getip.zsh
+# @Copyright     : Copyright: (c) 2021 Jason Hempstead, CasjaysDev
+# @Created       : Sunday, Mar 21, 2021 20:43 EDT
+# @File          : getip.zsh
+# @Description   : Get current IP Address
+# @TODO          :
+# @Other         :
+# @Resource      :
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 unset IFCONFIG NETDEV IFISONLINE CURRIP4 CURRIP6 CURRIP4WAN CURRIP6WAN
-
 __getip() {
   IFCONFIG="$(sudo bash -c "command -v ifconfig 2>/dev/null")"
   if [ ! -z "$IFCONFIG" ]; then
@@ -40,5 +41,4 @@ __getip() {
     unset IFCONFIG NETDEV IFISONLINE CURRIP4 CURRIP6 CURRIP4WAN CURRIP6WAN
   fi
 }
-
 #---------------------------------------------------------------------------------------

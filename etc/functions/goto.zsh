@@ -1,41 +1,27 @@
-# shellcheck shell=bash
-# shellcheck disable=SC2039
-# SOURCE: https://github.com/iridakos/goto
-# MIT License
-#
-# Copyright (c) 2018 Lazarus Lazaridis
-#
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be included in all
-# copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
-
-# Changes to the given alias directory
-# or executes a command based on the arguments.
+#!/usr/bin/env zsh
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+##@Version       : 202103212043-git
+# @Author        : Jason Hempstead
+# @Contact       : jason@casjaysdev.com
+# @License       : MIT
+# @ReadME        : goto.zsh
+# @Copyright     : Copyright (c) 2018 Lazarus Lazaridis
+# @Created       : Sunday, Mar 21, 2021 20:43 EDT
+# @File          : goto.zsh
+# @Description   :
+# @TODO          :
+# @Other         :
+# @Resource      : https://github.com/iridakos/goto
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 goto()
 {
   local target
   _goto_resolve_db
-
   if [ -z "$1" ]; then
     # display usage and exit when no args
     _goto_usage
     return
   fi
-
   subcommand="$1"
   shift
   case "$subcommand" in

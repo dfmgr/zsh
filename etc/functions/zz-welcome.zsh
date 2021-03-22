@@ -1,16 +1,18 @@
 #!/usr/bin/env zsh
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# @Author      : Jason
-# @Contact     : casjaysdev@casjay.net
-# @File        : zz-welcome.zsh
-# @Created     : Mon, Dec 23, 2019, 14:13 EST
-# @License     : WTFPL
-# @Copyright   : Copyright (c) CasjaysDev
-# @Description : welcome message
-#
+##@Version       : 202103212108-git
+# @Author        : Jason Hempstead
+# @Contact       : jason@casjaysdev.com
+# @License       : WTFPL
+# @ReadME        : welcome.zsh --help
+# @Copyright     : Copyright: (c) 2021 Jason Hempstead, CasjaysDev
+# @Created       : Sunday, Mar 21, 2021 21:08 EDT
+# @File          : welcome.zsh
+# @Description   : Shows an initial welcome message
+# @TODO          :
+# @Other         :
+# @Resource      :
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 show_welcome() {
   if [ ! -f $HOME/.config/zsh/welcome.msg ]; then
     printf_green "Welcome to your system!"
@@ -29,9 +31,7 @@ show_welcome() {
     fi
   fi
 }
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 show_welcome_tor() {
   if [ ! -f $HOME/.config/zsh/welcome_tor.msg ]; then
     if [ ! -f /usr/local/etc/tor/install.sh ]; then
@@ -54,5 +54,4 @@ show_welcome_tor() {
     fi
   fi
 }
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

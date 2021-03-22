@@ -1,5 +1,4 @@
 #!/usr/bin/env zsh
-
 export ZDOTDIR="$HOME/.config/zsh"
 export ZSH_CACHEDIR="$HOME/.cache/oh-my-zsh"
 export ZSH="$HOME/.local/share/zsh/oh-my-zsh"

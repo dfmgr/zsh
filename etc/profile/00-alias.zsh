@@ -1,5 +1,4 @@
 #!/usr/bin/env zsh
-
 case "$(uname -s)" in
 CYGWIN* | MINGW32* | MSYS* | MINGW*)
   if [ -f "$HOME/.config/zsh/aliases/00-default.win" ]; then

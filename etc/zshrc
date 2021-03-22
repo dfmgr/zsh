@@ -36,24 +36,24 @@ autoload -Uz compinit compinit
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Add user functions to $fpath
 fpath=("$HOME/.config/zsh/functions" $fpath)
-for f in "$HOME/.config/zsh/functions/"*.zsh; do
-  source $f 2>/dev/null
+for function in "$HOME/.config/zsh/functions/"*.zsh; do
+  source $function 2>/dev/null
 done
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Load all files from .config/zsh/profile directory
 if [[ -d $HOME/.config/zsh/profile ]]; then
   for profile in $HOME/.config/zsh/profile/*.zsh; do
     source $profile 2>/dev/null
-    unset profile
   done
+  unset profile
 fi
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Load all files from .config/zsh/completions directory
 if [[ -d $HOME/.config/zsh/completions ]]; then
   for completions in $HOME/.config/zsh/completions/*.zsh; do
     source $completions 2>/dev/null
-    unset completions
   done
+  unset completions
 fi
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Make sure oh-my-zsh is loaded
@@ -132,4 +132,5 @@ if [[ -f "$HOME/.config/local/zsh."$(hostname)".local" ]]; then
   source "$HOME/.config/local/zsh."$(hostname)".local" 2>/dev/null
 fi
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-export SRCZSHRC="$HOME/.zshrc"
+export ZSHRCSRC="$HOME/.zshrc"
+

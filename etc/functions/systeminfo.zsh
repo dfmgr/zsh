@@ -1,22 +1,20 @@
 #!/usr/bin/env zsh
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# @Author      : Jason
-# @Contact     : casjaysdev@casjay.net
-# @File        : systeminfo.zsh
-# @Created     : Mon, Dec 31, 2019, 00:00 EST
-# @License     : WTFPL
-# @Copyright   : Copyright (c) CasjaysDev
-# @Description : show system information
-#
+##@Version       : 202103212103-git
+# @Author        : Jason Hempstead
+# @Contact       : jason@casjaysdev.com
+# @License       : WTFPL
+# @ReadME        : systeminfo.zsh
+# @Copyright     : Copyright: (c) 2021 Jason Hempstead, CasjaysDev
+# @Created       : Sunday, Mar 21, 2021 21:03 EDT
+# @File          : systeminfo.zsh
+# @Description   : Show system info
+# @TODO          :
+# @Other         :
+# @Resource      :
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-showcputemp() {
-  awk -v t="$(cat /sys/class/thermal/thermal_zone0/temp)" 'BEGIN{print t/1000}'
-}
-
+showcputemp() { awk -v t="$(cat /sys/class/thermal/thermal_zone0/temp)" 'BEGIN{print t/1000}'; }
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 showsysteminfo() {
   echo ""
   echo -e "\t\t${LIGHTRED}   CPU:$NC"
@@ -38,9 +36,7 @@ showsysteminfo() {
   df -h | grep -e"/dev/sd" -e"/mnt/" | awk '{print "\t"$0}'
   echo ""
 }
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 showkernelgraph() {
   lsmod | perl -e 'print "digraph \"lsmod\" {";
                  <>;
@@ -50,5 +46,4 @@ showkernelgraph() {
                  }
                  print "}"' | dot -Tsvg | rsvg-view-3 /dev/stdin
 }
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

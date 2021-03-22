@@ -1,134 +1,149 @@
-#!/usr/bin/env zsh
-
+#!/usr/bin/env bash
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# @Author      : Jason
-# @Contact     : casjaysdev@casjay.net
-# @File        : 00.zsh
-# @Created     : Mon, Dec 23, 2019, 14:13 EST
-# @License     : WTFPL
-# @Copyright   : Copyright (c) CasjaysDev
-# @Description : functions for zsh login
-#
+##@Version       : 202103212043-git
+# @Author        : Jason Hempstead
+# @Contact       : jason@casjaysdev.com
+# @License       : WTFPL
+# @ReadME        : README.md
+# @Copyright     : Copyright: (c) 2021 Jason Hempstead, CasjaysDev
+# @Created       : Sunday, Mar 21, 2021 20:43 EDT
+# @File          :
+# @Description   :
+# @TODO          :
+# @Other         :
+# @Resource      :
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-NC="$(tput sgr0 2>/dev/null)"
-RESET="$(tput sgr0 2>/dev/null)"
-BLACK="\033[0;30m"    # Black
-RED="\033[0;31m"      # Red
-GREEN="\033[0;32m"    # Green
-YELLOW="\033[0;33m"   # Yellow
-BLUE="\033[0;34m"     # Blue
-PURPLE="\033[0;35m"   # Purple
-CYAN="\033[0;36m"     # Cyan
-WHITE="\033[0;37m"    # White
-ORANGE="\033[0;33m"   # Orange
-LIGHTRED='\033[1;31m' # Light Red
-
+# Icons
+ICON_INFO="[ ℹ️ ]"
+ICON_GOOD="[ ✔ ]"
+ICON_WARN="[ ❗ ]"
+ICON_ERROR="[ ✖ ]"
+ICON_QUESTION="[ ❓ ]"
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 printf_color() { printf "%b" "$(tput setaf "$2" 2>/dev/null)" "$1" "$(tput sgr0 2>/dev/null)"; }
-printf_normal() { printf_color "\t\t$1\n" "$2"; }
+printf_normal() { printf_color "\t\t$1\n" "0"; }
 printf_green() { printf_color "\t\t$1\n" 2; }
 printf_red() { printf_color "\t\t$1\n" 1; }
 printf_purple() { printf_color "\t\t$1\n" 5; }
 printf_yellow() { printf_color "\t\t$1\n" 3; }
 printf_blue() { printf_color "\t\t$1\n" 4; }
 printf_cyan() { printf_color "\t\t$1\n" 6; }
-printf_info() { printf_color "\t\t[ ℹ️ ] $1\n" 3; }
-printf_help() { printf_color "\t\t$1\n" 1; }
-printf_read() { printf_color "\t\t$1" 5; }
-printf_success() { printf_color "\t\t[ ✔ ] $1\n" 2; }
-printf_error() { printf_color "\t\t[ ✖ ] $1 $2\n" 1; }
-printf_warning() { printf_color "\t\t[ ❗ ] $1\n" 3; }
-printf_question() { printf_color "\t\t[ ❓ ] $1 [❓] " 6; }
+printf_info() { printf_color "\t\t$ICON_INFO $1\n" 3; }
+printf_success() { printf_color "\t\t$ICON_GOOD $1\n" 2; }
+printf_error() { printf_color "\t\t$ICON_ERROR $1 $2\n" 1; }
+printf_warning() { printf_color "\t\t$ICON_WARN $1\n" 3; }
+printf_question() { printf_color "\t\t$ICON_QUESTION $1 " 6; }
 printf_error_stream() { while read -r line; do printf_error "↳ ERROR: $line"; done; }
-printf_execute_success() { printf_color "\t\t[ ✔ ] $1 [ ✔ ] \n" 2; }
-printf_execute_error() { printf_color "\t\t[ ✖ ] $1 $2 [ ✖ ] \n" 1; }
-printf_execute_error_stream() { while read -r line; do printf_execute_error "↳ ERROR: $line"; done; }
-
+printf_execute_success() { printf_color "\t\t$ICON_ERROR $1  \n" 2; }
+printf_execute_error() { printf_color "\t\t$ICON_ERROR $1 $2 \n" 1; }
 printf_execute_result() {
   if [ "$1" -eq 0 ]; then printf_execute_success "$2"; else printf_execute_error "$2"; fi
   return "$1"
 }
+printf_execute_error_stream() { while read -r line; do printf_execute_error "↳ ERROR: $line"; done; }
 
 printf_exit() {
-  printf_color "\t\t$1\n" 1
-  return 1
+  test -n "$1" && test -z "${1//[0-9]/}" && local color="$1" && shift 1 || local color="1"
+  local msg="$*"
+  shift
+  printf_color "\t\t$msg" "$color"
+  echo ""
+  exit 0
+}
+
+printf_help() {
+  test -n "$1" && test -z "${1//[0-9]/}" && local color="$1" && shift 1 || local color="4"
+  local msg="$*"
+  shift
+  echo ""
+  printf_color "\t\t$msg\n" "$color"
+  echo ""
+  exit 0
+}
+
+printf_custom() {
+  test -n "$1" && test -z "${1//[0-9]/}" && local color="$1" && shift 1 || local color="5"
+  local msg="$*"
+  shift
+  printf_color "\t\t$msg" "$color"
+  echo ""
+}
+
+printf_read() {
+  set -o pipefail
+  test -n "$1" && test -z "${1//[0-9]/}" && local color="$1" && shift 1 || local color="6"
+  while read line; do
+    printf_color "\t\t$line" "$color"
+  done
+  printf "\n"
+  set +o pipefail
+}
+
+printf_readline() {
+  set -o pipefail
+  test -n "$1" && test -z "${1//[0-9]/}" && local color="$1" && shift 1 || local color="6"
+  while read line; do
+    printf_color "\t\t$line\n" "$color"
+  done
+  set +o pipefail
+}
+
+printf_question() {
+  test -n "$1" && test -z "${1//[0-9]/}" && local color="$1" && shift 1 || local color="4"
+  local msg="$*"
+  shift
+  printf_color "\t\t$ICON_QUESTION $msg? " "$color"
+}
+
+printf_custom_question() {
+  test -n "$1" && test -z "${1//[0-9]/}" && local color="$1" && shift 1 || local color="1"
+  local msg="$*"
+  shift
+  printf_color "\t\t$msg " "$color"
+}
+
+printf_answer() {
+  read -e -r -n "${2:-120}" -s "${1:-__ANSWER}"
+  history -s "${1:-$__ANSWER}"
+}
+
+#printf_read_question "color" "message" "maxLines" "answerVar"
+printf_read_question() {
+  test -n "$1" && test -z "${1//[0-9]/}" && local color="$1" && shift 1 || local color="1"
+  local msg="$1" && shift 1
+  local lines="${1:-120}" && shift 1
+  local reply="${1:-__ANSWER}" && shift 1
+  printf_color "\t\t$msg " "$color"
+  printf_answer "$reply" "$lines"
+}
+
+printf_answer_yes() { [[ "${1:-$__ANSWER}" =~ ${2:-^[Yy]$} ]] && return 0 || return 1; }
+
+printf_head() {
+  test -n "$1" && test -z "${1//[0-9]/}" && local color="$1" && shift 1 || local color="6"
+  local msg1="$1" && shift 1
+  local msg2="$1" && shift 1 || msg2=
+  local msg3="$1" && shift 1 || msg3=
+  local msg4="$1" && shift 1 || msg4=
+  local msg5="$1" && shift 1 || msg5=
+  local msg6="$1" && shift 1 || msg6=
+  local msg7="$1" && shift 1 || msg7=
+  shift
+  [ -z "$msg1" ] || printf_color "\t\t##################################################\n" "$color"
+  [ -z "$msg1" ] || printf_color "\t\t$msg1\n" "$color"
+  [ -z "$msg2" ] || printf_color "\t\t$msg2\n" "$color"
+  [ -z "$msg3" ] || printf_color "\t\t$msg3\n" "$color"
+  [ -z "$msg4" ] || printf_color "\t\t$msg4\n" "$color"
+  [ -z "$msg5" ] || printf_color "\t\t$msg5\n" "$color"
+  [ -z "$msg6" ] || printf_color "\t\t$msg6\n" "$color"
+  [ -z "$msg7" ] || printf_color "\t\t$msg7\n" "$color"
+  [ -z "$msg1" ] || printf_color "\t\t##################################################\n" "$color"
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-__tput() { tput $* 2>/dev/null; }
-__whiletrue() { while true; do
-  "$@"
-  sleep 60
-done; }
-
-cmd_exists() {
-  unalias "$1" >/dev/null 2>&1
-  command -v "$1" >/dev/null 2>&1
-}
-
-rm_rf() { devnull rm -Rf "$@"; }
-cp_rf() { if [ -e "$1" ]; then devnull cp -Rfa "$@"; fi; }
-mv_f() { if [ -e "$1" ]; then devnull mv -f "$@"; fi; }
-ln_rm() { devnull find "$HOME" -xtype l -delete; }
-ln_sf() {
-  devnull ln -sf "$@"
-  ln_rm
-}
-
-devnull() { "$@" >/dev/null 2>&1; }
-devnull1() { "$@" 1>/dev/null; }
-devnull2() { "$@" 2>/dev/null; }
-alias_function() { eval "${1}() $(declare -f "${2}" | sed 1d)"; }
-set_trap() { trap -p "$1" | grep "$2" &>/dev/null || trap '$2' "$1"; }
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-returnexitcode() {
-  local RETVAL="$?"
-  if [ "$RETVAL" -eq 0 ]; then BG_EXIT="${BG_GREEN}"; else BG_EXIT="${BG_RED}"; fi
-}
-
-getexitcode() {
-  local RETVAL="$?"
-  local ERROR="Failed"
-  local SUCCES="$1"
-  EXIT="$RETVAL"
-  if [ "$RETVAL" -eq 0 ]; then
-    printf_success "$SUCCES"
-    return 0
-  else
-    printf_error "$ERROR"
-    return 1
-  fi
-  returnexitcode
-}
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-answer_is_yes() { [[ "$REPLY" =~ ^[Yy]$ ]] && return 0 || return 1; }
-
-ask() {
-  printf_question "$1"
-  read -r
-}
-
-ask_for_confirmation() {
-  printf_question "$1"
-  read -r -n 1
-  printf ""
-}
-
-get_answer() { printf "%s" "$REPLY"; }
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 # use grc if it's installed or execute the command direct
-
-if ! cmd_exists grc; then
-  if [[ USEGRC = "yes" ]]; then
+if [[ -z "$(command -v grc)" ]]; then
+  if [[ "$USEGRC" = "yes" ]]; then
     grc() {
       if [[ -f "$(command -v grc)" ]]; then
         #grc --colour=auto
@@ -139,63 +154,31 @@ if ! cmd_exists grc; then
     }
   fi
 fi
-
-#
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-#pastebin.com || Usage: 'command | pastebin.com or pastebin.com filename'
-
-if ! cmd_exists pastebin.com; then
-  pastebin.com() {
-    [ "$1" = "--help" ] && printf_help "Usage: 'command | pastebin.com or pastebin.com filename'"
-    if [ ! -d "$HOME"/.local/bin ]; then mkdir "$HOME"/.local/bin; fi
-    if [ -f "$(command -v pastebin.com 2>/dev/null)" ]; then
-      command -v pastebin.com "$@"
-    else
-      curl -LSs "https://github.com/dfmgr/installer/raw/master/bin/pastebin.com" -o "$HOME/.local/bin/pastebin.com"
-      chmod 755 "$HOME"/.local/bin/pastebin.com
-      "$HOME"/.local/bin/pastebin.com "$@"
-    fi
-  }
-fi
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 # generate random strings
-
-if ! cmd_exists random-string; then
+if [[ -z "$(command -v random-string)" ]]; then
   random-string() {
-    cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w ${1:-64} | head -n 1
+    cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w "${1:-64}" | head -n 1
   }
 fi
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-if ! cmd_exists mkpasswd; then
+if [[ -z "$(command -v mkpasswd)" ]]; then
   mkpasswd() {
-    cat /dev/urandom | tr -dc [:print:] | tr -d '[:space:]\042\047\134' | fold -w ${1:-64} | head -n 1
+    cat /dev/urandom | tr -dc [:print:] | tr -d '[:space:]\042\047\134' | fold -w "${1:-64}" | head -n 1
   }
 fi
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 # the fuck
-
 fuck() {
   TF_CMD=$(
     TF_ALIAS=fuck \
       PYTHONIOENCODING=utf-8 \
       TF_SHELL_ALIASES=$(alias)
-    thefuck $(fc -ln -1)
-  ) &&
-    eval $TF_CMD && history -s $TF_CMD
+    thefuck "$(fc -ln -1)"
+  ) && eval "$TF_CMD" && history -s "$TF_CMD"
 }
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 # Set OS TYPE
-
 detectos() {
   OS="$(uname)"
   case $OS in
@@ -218,11 +201,8 @@ detectos() {
   *) ;;
   esac
 }
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 #Set OS Detection
-
 detectostype() {
   arch=$(uname -m)
   kernel=$(uname -r)
@@ -237,7 +217,6 @@ detectostype() {
   else
     distroname="$(uname -s) $(uname -r)"
   fi
-
   #Various Arch Distros
   if [[ "$distroname" =~ "ArcoLinux" ]] || [[ "$distroname" =~ "Arch" ]] || [[ "$distroname" =~ "BlackArch" ]]; then
     DISTRO=Arch
@@ -265,17 +244,12 @@ detectostype() {
   elif [[ "$distroname" =~ "Fedora" ]]; then
     DISTRO=Fedora
   fi
-
   if [ -f /etc/os-release ]; then
     DISTROID="$(grep ID_LIKE /etc/os-release | sed 's/^.*=//')"
   fi
-
 }
-
 # - -- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 detectos
 detectostype
 unset -f detectos detectostype
-
 # - -- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
