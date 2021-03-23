@@ -48,7 +48,7 @@ printf_exit() {
   shift
   printf_color "\t\t$msg" "$color"
   echo ""
-  exit 0
+  return 0
 }
 
 printf_help() {
@@ -67,6 +67,14 @@ printf_custom() {
   shift
   printf_color "\t\t$msg" "$color"
   echo ""
+}
+
+printf_pause() {
+  test -n "$1" && test -z "${1//[0-9]/}" && local color="$1" && shift 1 || local color="5"
+  local msg="${*:-Press any key to continue}"
+  printf_color "\t\t$msg " "$color"
+  read -r -n 1 -s
+  printf "\n"
 }
 
 printf_read() {
