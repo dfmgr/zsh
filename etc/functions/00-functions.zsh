@@ -58,7 +58,7 @@ printf_help() {
   echo ""
   printf_color "\t\t$msg\n" "$color"
   echo ""
-  exit 0
+  return 0
 }
 
 printf_custom() {

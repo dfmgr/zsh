@@ -14,7 +14,7 @@
 # @Resource      :
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 if ! cmd_exists celcius2f f2celcius; then
-  celsius2f() {
+  celcius2f() {
     tf=$(echo "scale=2;((9/5) * $1) + 32" | bc)
     echo $tf
   }
