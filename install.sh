@@ -137,10 +137,11 @@ if __am_i_online; then
     else
       execute "git_clone https://github.com/robbyrussell/oh-my-zsh $PLUGDIR/oh-my-zsh" "Installing plugin oh-my-zsh"
     fi
-    if [ -d "$PLUGDIR/custom/plugins/zsh-syntax-highlighting/.git" ]; then
+    if [ -d "$PLUGDIR/oh-my-zsh/custom/plugins/zsh-syntax-highlighting/.git" ]; then
       execute "git_update $PLUGDIR/oh-my-zsh/custom/plugins/zsh-syntax-highlighting" "Updating zsh-syntax-highlighting"
     else
-      execute "git_clone https://github.com/zsh-users/zsh-syntax-highlighting $PLUGDIR/oh-my-zsh/custom/plugins/zsh-syntax-highlighting" "Installing zsh-syntax-highlighting"
+      execute "git_clone https://github.com/zsh-users/zsh-syntax-highlighting $PLUGDIR/oh-my-zsh/custom/plugins/zsh-syntax-highlighting" \
+        "Installing zsh-syntax-highlighting"
     fi
     if [ -d "$PLUGDIR/oh-my-zsh/custom/themes/powerlevel9k/.git" ]; then
       execute "git_update $PLUGDIR/oh-my-zsh/custom/themes/powerlevel9k" "Updating powerlevel9k"
