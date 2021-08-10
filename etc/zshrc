@@ -133,4 +133,3 @@ if [[ -f "$HOME/.config/local/zsh."$(hostname)".local" ]]; then
 fi
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 export ZSHRCSRC="$HOME/.zshrc"
-
