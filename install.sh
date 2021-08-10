@@ -78,10 +78,10 @@ show_optvars "$@"
 dfmgr_run_init
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # end with a space
-APP="$APPNAME direnv thefuck "
+APP="$APPNAME direnv "
 PERL=""
 PYTH=""
-PIPS=""
+PIPS="thefuck "
 CPAN=""
 GEMS=""
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
