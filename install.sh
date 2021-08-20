@@ -142,22 +142,22 @@ if am_i_online; then
     else
       execute "git_clone https://github.com/robbyrussell/oh-my-zsh $PLUGDIR/oh-my-zsh" "Installing plugin oh-my-zsh"
     fi
-    if [ -d "$PLUGDIR/oh-my-zsh/custom/plugins/zsh-syntax-highlighting/.git" ]; then
-      execute "git_update $PLUGDIR/oh-my-zsh/custom/plugins/zsh-syntax-highlighting" "Updating zsh-syntax-highlighting"
-    else
-      execute "git_clone https://github.com/zsh-users/zsh-syntax-highlighting $PLUGDIR/oh-my-zsh/custom/plugins/zsh-syntax-highlighting" \
-        "Installing zsh-syntax-highlighting"
-    fi
-    if [ -d "$PLUGDIR/oh-my-zsh/custom/themes/powerlevel9k/.git" ]; then
-      execute "git_update $PLUGDIR/oh-my-zsh/custom/themes/powerlevel9k" "Updating powerlevel9k"
-    else
-      execute "git_clone https://github.com/bhilburn/powerlevel9k.git $PLUGDIR/oh-my-zsh/custom/themes/powerlevel9k" "Installing powerlevel9k"
-    fi
-    if [ -d "$PLUGDIR/oh-my-zsh/custom/themes/powerlevel10k/.git" ]; then
-      execute "git_update $PLUGDIR/oh-my-zsh/custom/themes/powerlevel10k" "Updating powerlevel10k"
-    else
-      execute "git_clone https://github.com/romkatv/powerlevel10k.git $PLUGDIR/oh-my-zsh/custom/themes/powerlevel10k" "Installing powerlevel10k"
-    fi
+#    if [ -d "$PLUGDIR/oh-my-zsh/custom/plugins/zsh-syntax-highlighting/.git" ]; then
+#      execute "git_update $PLUGDIR/oh-my-zsh/custom/plugins/zsh-syntax-highlighting" "Updating zsh-syntax-highlighting"
+#    else
+#      execute "git_clone https://github.com/zsh-users/zsh-syntax-highlighting $PLUGDIR/oh-my-zsh/custom/plugins/zsh-syntax-highlighting" \
+#        "Installing zsh-syntax-highlighting"
+#    fi
+#    if [ -d "$PLUGDIR/oh-my-zsh/custom/themes/powerlevel9k/.git" ]; then
+#      execute "git_update $PLUGDIR/oh-my-zsh/custom/themes/powerlevel9k" "Updating powerlevel9k"
+#    else
+#      execute "git_clone https://github.com/bhilburn/powerlevel9k.git $PLUGDIR/oh-my-zsh/custom/themes/powerlevel9k" "Installing powerlevel9k"
+#    fi
+#    if [ -d "$PLUGDIR/oh-my-zsh/custom/themes/powerlevel10k/.git" ]; then
+#      execute "git_update $PLUGDIR/oh-my-zsh/custom/themes/powerlevel10k" "Updating powerlevel10k"
+#    else
+#      execute "git_clone https://github.com/romkatv/powerlevel10k.git $PLUGDIR/oh-my-zsh/custom/themes/powerlevel10k" "Installing powerlevel10k"
+#    fi
   fi
   # exit on fail
   failexitcode $? "Git has failed"
