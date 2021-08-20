@@ -5,6 +5,10 @@ source "$HOME/.local/share/zsh/zplug/init.zsh"
 
 # Define plugins
 zplug "DhavalKapil/luaver"
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplug "romkatv/powerlevel10k",   from:oh-my-zsh
+zplug "bhilburn/powerlevel9k",   from:oh-my-zsh
+zplug "robbyrussell/oh-my-zsh",   from:oh-my-zsh
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Run last
