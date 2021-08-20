@@ -132,6 +132,11 @@ fi
 # Plugins
 if am_i_online; then
   if [ "$PLUGNAMES" != "" ]; then
+    if [ -d "$PLUGDIR"/zplug/.git ]; then
+      execute "git_update $PLUGDIR/zplug" "Updating plugin zplug"
+    else
+      execute "git_clone https://github.com/zplug/zplug $PLUGDIR/zplug" "Installing plugin zplug"
+    fi
     if [ -d "$PLUGDIR"/oh-my-zsh/.git ]; then
       execute "git_update $PLUGDIR/oh-my-zsh" "Updating plugin oh-my-zsh"
     else
