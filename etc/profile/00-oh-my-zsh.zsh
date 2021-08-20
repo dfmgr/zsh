@@ -33,11 +33,11 @@ if [[ -f "$HOME/.local/share/zsh/oh-my-zsh/custom/themes/powerlevel9k/powerlevel
   ZSH_THEME="powerlevel9k/powerlevel9k"
 fi
 # load theme powerlevel10k
-if [[ -f "$HOME/.local/share/zsh/oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme" ]]; then
-    source "$HOME/.local/share/zsh/oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme" 2>/dev/null
-    source "$HOME/.config/zsh/themes/powerlevel-10k.zsh"
-    ZSH_THEME="powerlevel10k/powerlevel10k"
-fi
+#if [[ -f "$HOME/.local/share/zsh/oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme" ]]; then
+#    source "$HOME/.local/share/zsh/oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme" 2>/dev/null
+#    source "$HOME/.config/zsh/themes/powerlevel-10k.zsh"
+#    ZSH_THEME="powerlevel10k/powerlevel10k"
+#fi
 # Uncomment the following line to change how often to auto-update (in days).
 export UPDATE_ZSH_DAYS=30
 # Load plugins
