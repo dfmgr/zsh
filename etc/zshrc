@@ -41,7 +41,7 @@ for function in "$HOME/.config/zsh/functions/"*.zsh; do
 done
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Load all files from .config/zsh/profile directory
-if [[ -d $HOME/.config/zsh/profile ]]; then
+if [[ -d "$HOME/.config/zsh/profile" ]]; then
   for profile in $HOME/.config/zsh/profile/*.zsh; do
     source $profile 2>/dev/null
   done
@@ -49,7 +49,7 @@ if [[ -d $HOME/.config/zsh/profile ]]; then
 fi
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Load all files from .config/zsh/completions directory
-if [[ -d $HOME/.config/zsh/completions ]]; then
+if [[ -d "$HOME/.config/zsh/completions" ]]; then
   for completions in $HOME/.config/zsh/completions/*.zsh; do
     source $completions 2>/dev/null
   done
@@ -62,7 +62,7 @@ if [[ -f "$HOME/.local/share/zsh/oh-my-zsh/oh-my-zsh.sh" ]]; then
   source "$HOME/.local/share/zsh/oh-my-zsh/oh-my-zsh.sh" 2>/dev/null
 fi
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Make sure zplu is loaded
+# Make sure zplug is loaded
 if [[ -f "$HOME/.local/share/zsh/zplug/init.zsh" ]]; then
   source "$HOME/.config/zsh/profile/00-zplug.zsh" 2>/dev/null
   source "$HOME/.local/share/zsh/zplug/init.zsh" 2>/dev/null
@@ -134,8 +134,8 @@ if [[ -f "$HOME/.config/local/zsh.servers.local" ]]; then
 fi
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Source system specific
-if [[ -f "$HOME/.config/local/zsh."$(hostname)".local" ]]; then
-  source "$HOME/.config/local/zsh."$(hostname)".local" 2>/dev/null
+if [[ -f "$HOME/.config/local/zsh.$(hostname).local" ]]; then
+  source "$HOME/.config/local/zsh.$(hostname).local" 2>/dev/null
 fi
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 export ZSHRCSRC="$HOME/.zshrc"
