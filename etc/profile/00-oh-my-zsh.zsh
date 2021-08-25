@@ -3,7 +3,7 @@ if [[ ! -f "$HOME/.local/share/zsh/oh-my-zsh/oh-my-zsh.sh" ]]; then
   echo "Installing oh-my-sh plugin and themes"
   rm -Rf "$HOME/.local/share/zsh/oh-my-zsh"
   git clone -q https://github.com/robbyrussell/oh-my-zsh.git "$HOME/.local/share/zsh/oh-my-zsh"
-  git clone -q https://github.com/bhilburn/powerlevel9k.git "$HOME/.local/share/zsh/oh-my-zsh/custom/themes/powerlevel9k"
+  #git clone -q https://github.com/bhilburn/powerlevel9k.git "$HOME/.local/share/zsh/oh-my-zsh/custom/themes/powerlevel9k"
   git clone -q https://github.com/romkatv/powerlevel10k.git "$HOME/.local/share/zsh/oh-my-zsh/custom/themes/powerlevel10k"
   git clone -q https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.local/share/zsh/oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
 fi

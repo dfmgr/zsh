@@ -1,12 +1,18 @@
-# List of plugins/themes to clone/update
+#!/usr/bin/env/zsh
 
-if [ -d "$HOME/.local/share/zsh/oh-my-zsh/custom/plugins/zsh-syntax-highlighting/.git" ]; then
-   git -C "$HOME/.local/share/zsh/oh-my-zsh/custom/plugins/zsh-syntax-highlighting" pull -q &>/dev/null
-else
-   git clone https://github.com/zsh-users/zsh-syntax-highlighting "$HOME/.local/share/zsh/oh-my-zsh/custom/plugins/zsh-syntax-highlighting" &>/dev/null
-fi
-if [ -d "$HOME/.local/share/zsh/oh-my-zsh/custom/themes/powerlevel10k/.git" ]; then
-   git -C "$HOME/.local/share/zsh/oh-my-zsh/custom/themes/powerlevel10k" pull &>/dev/null
-else
-   git clone https://github.com/romkatv/powerlevel10k.git "$HOME/.local/share/zsh/oh-my-zsh/custom/themes/powerlevel10k" &>/dev/null
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Load init script
+source "$HOME/.local/share/zsh/zsh-snap/install.zsh"
+source "$HOME/.local/share/zsh/zplug/init.zsh"
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Define plugins
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Run last
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo
+        zplug install
+    fi
 fi

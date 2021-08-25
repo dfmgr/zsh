@@ -123,6 +123,11 @@ WORDCHARS=${WORDCHARS/\//}
 # Remove duplicates in path variables
 typeset -gU path fpath cdpath manpath
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Source plugins
+if [[ -f "$HOME/.config/zsh/plugins.zsh" ]]; then
+  source "$HOME/.config/zsh/plugins.zsh" 2>/dev/null
+fi
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Source users file
 if [[ -f "$HOME/.config/local/zsh.local" ]]; then
   source "$HOME/.config/local/zsh.local" 2>/dev/null

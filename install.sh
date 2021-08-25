@@ -132,32 +132,21 @@ fi
 # Plugins
 if am_i_online; then
   if [ "$PLUGNAMES" != "" ]; then
-    if [ -d "$PLUGDIR"/zplug/.git ]; then
+    if [ -d "$PLUGDIR/zsh-snap/.git" ]; then
+      execute "git_update $PLUGDIR/zsh-snap" "Updating plugin zsh-snap"
+    else
+      execute "git_clone https://github.com/marlonrichert/zsh-snap $PLUGDIR/zsh-snap" "Installing plugin zsh-snap"
+    fi
+    if [ -d "$PLUGDIR/zplug/.git" ]; then
       execute "git_update $PLUGDIR/zplug" "Updating plugin zplug"
     else
       execute "git_clone https://github.com/zplug/zplug $PLUGDIR/zplug" "Installing plugin zplug"
     fi
-    if [ -d "$PLUGDIR"/oh-my-zsh/.git ]; then
+    if [ -d "$PLUGDIR/oh-my-zsh/.git" ]; then
       execute "git_update $PLUGDIR/oh-my-zsh" "Updating plugin oh-my-zsh"
     else
       execute "git_clone https://github.com/robbyrussell/oh-my-zsh $PLUGDIR/oh-my-zsh" "Installing plugin oh-my-zsh"
     fi
-#    if [ -d "$PLUGDIR/oh-my-zsh/custom/plugins/zsh-syntax-highlighting/.git" ]; then
-#      execute "git_update $PLUGDIR/oh-my-zsh/custom/plugins/zsh-syntax-highlighting" "Updating zsh-syntax-highlighting"
-#    else
-#      execute "git_clone https://github.com/zsh-users/zsh-syntax-highlighting $PLUGDIR/oh-my-zsh/custom/plugins/zsh-syntax-highlighting" \
-#        "Installing zsh-syntax-highlighting"
-#    fi
-#    if [ -d "$PLUGDIR/oh-my-zsh/custom/themes/powerlevel9k/.git" ]; then
-#      execute "git_update $PLUGDIR/oh-my-zsh/custom/themes/powerlevel9k" "Updating powerlevel9k"
-#    else
-#      execute "git_clone https://github.com/bhilburn/powerlevel9k.git $PLUGDIR/oh-my-zsh/custom/themes/powerlevel9k" "Installing powerlevel9k"
-#    fi
-#    if [ -d "$PLUGDIR/oh-my-zsh/custom/themes/powerlevel10k/.git" ]; then
-#      execute "git_update $PLUGDIR/oh-my-zsh/custom/themes/powerlevel10k" "Updating powerlevel10k"
-#    else
-#      execute "git_clone https://github.com/romkatv/powerlevel10k.git $PLUGDIR/oh-my-zsh/custom/themes/powerlevel10k" "Installing powerlevel10k"
-#    fi
   fi
   # exit on fail
   failexitcode $? "Git has failed"
