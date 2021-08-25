@@ -6,6 +6,8 @@ source "$HOME/.local/share/zsh/zsh-snap/install.zsh"
 source "$HOME/.local/share/zsh/zplug/init.zsh"
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Define plugins
+znap source marlonrichert/zcolors
+znap eval zcolors "zcolors ${(q)LS_COLORS}"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Run last
