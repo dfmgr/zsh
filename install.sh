@@ -132,11 +132,6 @@ fi
 # Plugins
 if am_i_online; then
   if [ "$PLUGNAMES" != "" ]; then
-    if [ -d "$PLUGDIR/zsh-snap/.git" ]; then
-      execute "git_update $PLUGDIR/zsh-snap" "Updating plugin zsh-snap"
-    else
-      execute "git_clone https://github.com/marlonrichert/zsh-snap $PLUGDIR/zsh-snap" "Installing plugin zsh-snap"
-    fi
     if [ -d "$PLUGDIR/zplug/.git" ]; then
       execute "git_update $PLUGDIR/zplug" "Updating plugin zplug"
     else
@@ -147,6 +142,11 @@ if am_i_online; then
     else
       execute "git_clone https://github.com/robbyrussell/oh-my-zsh $PLUGDIR/oh-my-zsh" "Installing plugin oh-my-zsh"
     fi
+    # if [ -d "$PLUGDIR/zsh-snap/.git" ]; then
+    #   execute "git_update $PLUGDIR/zsh-snap" "Updating plugin zsh-snap"
+    # else
+    #   execute "git_clone https://github.com/marlonrichert/zsh-snap $PLUGDIR/zsh-snap" "Installing plugin zsh-snap"
+    # fi
   fi
   # exit on fail
   failexitcode $? "Failed to download Plugin repo"
