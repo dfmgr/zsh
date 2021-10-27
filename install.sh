@@ -157,7 +157,7 @@ run_postinst() {
   dfmgr_run_post
   ln_sf "$APPDIR/zshrc" "$HOME/.zshrc"
   [ -f "$APPDIR/.zshrc" ] || cp_rf "$APPDIR/zshrc" "$APPDIR/.zshrc"
-  [ -f "$APPDIR/install_plugins.zsh" ] && chmod -f 755 "$APPDIR/install_plugins.zsh" && zsh -c "$APPDIR/install_plugins.zsh"
+  [ -f "$APPDIR/install_plugins.zsh" ] && chmod +x "$APPDIR/install_plugins.zsh" && zsh "$APPDIR/install_plugins.zsh"
 }
 #
 execute "run_postinst" "Running post install scripts"
