@@ -13,8 +13,9 @@ if [[ ! -d "$HOME/.local/share/zsh/oh-my-zsh/custom/plugins/zsh-syntax-highlight
   git clone -q "https://github.com/zsh-users/zsh-syntax-highlighting" "$HOME/.local/share/zsh/oh-my-zsh/custom/plugins/zsh-syntax-highlighting" &>/dev/null
 fi
 
-if [[ ! -d "$ZSH/custom/themes/powerlevel9k/.git" ]]; then
-  git clone -q https://github.com/bhilburn/powerlevel9k.git "$ZSH/custom/themes/powerlevel9k"
+if [[ ! -d "$HOME/.local/share/zsh/oh-my-zsh/custom/themes/powerlevel9k/.git" ]]; then
+  echo "Installing powerlevel9k"
+  git clone -q https://github.com/bhilburn/powerlevel9k.git "$HOME/.local/share/zsh/oh-my-zsh/custom/themes/powerlevel9k"
 fi
 
 if [[ ! -d "$HOME/.local/share/zsh/oh-my-zsh/custom/themes/powerlevel10k/.git" ]]; then
