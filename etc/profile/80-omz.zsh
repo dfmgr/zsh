@@ -17,9 +17,9 @@ fi
 if [[ ! -d "$ZSH/custom/themes/powerlevel10k/.git" ]]; then
   git clone -q https://github.com/romkatv/powerlevel10k.git "$ZSH/custom/themes/powerlevel10k"
 fi
-#if [[ ! -d "$ZSH/custom/themes/powerlevel9k/.git" ]]; then
-#git clone -q https://github.com/bhilburn/powerlevel9k.git "$ZSH/custom/themes/powerlevel9k"
-#fi
+if [[ ! -d "$ZSH/custom/themes/powerlevel9k/.git" ]]; then
+  git clone -q https://github.com/bhilburn/powerlevel9k.git "$ZSH/custom/themes/powerlevel9k"
+fi
 
 # oh-my-zsh cache dir
 if [[ ! -d "$HOME/.cache/oh-my-zsh" ]]; then
@@ -45,18 +45,18 @@ esac
 if [[ -f "$ZSH/oh-my-zsh.sh" ]]; then
   source "$ZSH/oh-my-zsh.sh" 2>/dev/null
 fi
+# load theme powerlevel10k
+if [[ -f "$ZSH/custom/themes/powerlevel10k/powerlevel10k.zsh-theme" ]]; then
+  source "$ZSH/custom/themes/powerlevel10k/powerlevel10k.zsh-theme" 2>/dev/null
+  source "$HOME/.config/zsh/themes/powerlevel-10k.zsh"
+  ZSH_THEME="powerlevel10k/powerlevel10k"
+fi
 # load theme powerlevel9k
 if [[ -f "$ZSH/custom/themes/powerlevel9k/powerlevel9k.zsh-theme" ]]; then
   source "$ZSH/custom/themes/powerlevel9k/powerlevel9k.zsh-theme" 2>/dev/null
   source "$HOME/.config/zsh/themes/powerlevel-09k.zsh"
   ZSH_THEME="powerlevel9k/powerlevel9k"
 fi
-# load theme powerlevel10k
-#if [[ -f "$ZSH/custom/themes/powerlevel10k/powerlevel10k.zsh-theme" ]]; then
-#    source "$ZSH/custom/themes/powerlevel10k/powerlevel10k.zsh-theme" 2>/dev/null
-#    source "$HOME/.config/zsh/themes/powerlevel-10k.zsh"
-#    ZSH_THEME="powerlevel10k/powerlevel10k"
-#fi
 # Uncomment the following line to change how often to auto-update (in days).
 export UPDATE_ZSH_DAYS=30
 # Load plugins
