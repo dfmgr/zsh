@@ -132,21 +132,11 @@ fi
 # Plugins
 if am_i_online; then
   if [ "$PLUGNAMES" != "" ]; then
-    if [ -d "$PLUGDIR/zplug/.git" ]; then
-      execute "git_update $PLUGDIR/zplug" "Updating plugin zplug"
-    else
-      execute "git_clone https://github.com/zplug/zplug $PLUGDIR/zplug" "Installing plugin zplug"
-    fi
     if [ -d "$PLUGDIR/oh-my-zsh/.git" ]; then
       execute "git_update $PLUGDIR/oh-my-zsh" "Updating plugin oh-my-zsh"
     else
       execute "git_clone https://github.com/robbyrussell/oh-my-zsh $PLUGDIR/oh-my-zsh" "Installing plugin oh-my-zsh"
     fi
-    # if [ -d "$PLUGDIR/zsh-snap/.git" ]; then
-    #   execute "git_update $PLUGDIR/zsh-snap" "Updating plugin zsh-snap"
-    # else
-    #   execute "git_clone https://github.com/marlonrichert/zsh-snap $PLUGDIR/zsh-snap" "Installing plugin zsh-snap"
-    # fi
   fi
   # exit on fail
   failexitcode $? "Failed to download Plugin repo"
@@ -157,7 +147,7 @@ run_postinst() {
   dfmgr_run_post
   ln_sf "$APPDIR/zshrc" "$HOME/.zshrc"
   [ -f "$APPDIR/.zshrc" ] || cp_rf "$APPDIR/zshrc" "$APPDIR/.zshrc"
-  [ -f "$APPDIR/install_plugins.zsh" ] && chmod +x "$APPDIR/install_plugins.zsh" && zsh "$APPDIR/install_plugins.zsh"
+  [ -f "$APPDIR/install_plugins.zsh" ] && zsh "$APPDIR/install_plugins.zsh"
 }
 #
 execute "run_postinst" "Running post install scripts"
