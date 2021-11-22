@@ -13,6 +13,10 @@
 # @Other         :
 # @Resource      :
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+if [ -f "$HOME/.config/misc/shell/aliases/00-aliases.sh" ]; then
+  source "$HOME/.config/misc/shell/aliases/00-aliases.sh"
+fi
+
 case "$(uname -s)" in
 CYGWIN* | MINGW32* | MSYS* | MINGW*)
   if [ -f "$HOME/.config/misc/shell/aliases/00-default.win" ]; then
