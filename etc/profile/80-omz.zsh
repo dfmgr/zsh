@@ -11,19 +11,19 @@ if [[ ! -d "$ZSH/.git" ]]; then
   rm -Rf "$ZSH"
   git clone -q https://github.com/robbyrussell/oh-my-zsh.git "$ZSH"
 fi
-if [[ ! -d "$ZSH/custom/plugins/zsh-syntax-highlighting/.git" ]]; then
-  git clone -q https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH/custom/plugins/zsh-syntax-highlighting"
+if [[ ! -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting/.git" ]]; then
+  git clone -q https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
 fi
-if [[ ! -d "$ZSH/custom/themes/powerlevel10k/.git" ]]; then
-  git clone -q https://github.com/romkatv/powerlevel10k.git "$ZSH/custom/themes/powerlevel10k"
+if [[ ! -d "$ZSH_CUSTOM/themes/powerlevel10k/.git" ]]; then
+  git clone -q https://github.com/romkatv/powerlevel10k.git "$ZSH_CUSTOM/themes/powerlevel10k"
 fi
-if [[ ! -d "$ZSH/custom/themes/powerlevel9k/.git" ]]; then
-  git clone -q https://github.com/bhilburn/powerlevel9k.git "$ZSH/custom/themes/powerlevel9k"
+if [[ ! -d "$ZSH_CUSTOM/themes/powerlevel9k/.git" ]]; then
+  git clone -q https://github.com/bhilburn/powerlevel9k.git "$ZSH_CUSTOM/themes/powerlevel9k"
 fi
 
 # oh-my-zsh cache dir
-if [[ ! -d "$HOME/.cache/oh-my-zsh" ]]; then
-  mkdir -p "$HOME/.cache/oh-my-zsh" 2>/dev/null
+if [[ ! -d "$ZSH_CACHEDIR" ]]; then
+  mkdir -p "$ZSH_CACHEDIR" 2>/dev/null
 fi
 
 # what OS?
@@ -46,14 +46,14 @@ if [[ -f "$ZSH/oh-my-zsh.sh" ]]; then
   source "$ZSH/oh-my-zsh.sh" 2>/dev/null
 fi
 # load theme powerlevel9k
-if [[ -f "$ZSH/custom/themes/powerlevel9k/powerlevel9k.zsh-theme" ]]; then
-  source "$ZSH/custom/themes/powerlevel9k/powerlevel9k.zsh-theme" 2>/dev/null
+if [[ -f "$ZSH_CUSTOM/themes/powerlevel9k/powerlevel9k.zsh-theme" ]]; then
+  source "$ZSH_CUSTOM/themes/powerlevel9k/powerlevel9k.zsh-theme" 2>/dev/null
   source "$HOME/.config/zsh/themes/powerlevel-09k.zsh"
   ZSH_THEME="powerlevel9k/powerlevel9k"
 fi
 # load theme powerlevel10k
-if [[ -f "$ZSH/custom/themes/powerlevel10k/powerlevel10k.zsh-theme" ]]; then
-  source "$ZSH/custom/themes/powerlevel10k/powerlevel10k.zsh-theme" 2>/dev/null
+if [[ -f "$ZSH_CUSTOM/themes/powerlevel10k/powerlevel10k.zsh-theme" ]]; then
+  source "$ZSH_CUSTOM/themes/powerlevel10k/powerlevel10k.zsh-theme" 2>/dev/null
   source "$HOME/.config/zsh/themes/powerlevel-10k.zsh"
   ZSH_THEME="powerlevel10k/powerlevel10k"
 fi

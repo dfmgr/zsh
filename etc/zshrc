@@ -15,6 +15,9 @@
 # allow insecure directories and files
 ZSH_DISABLE_COMPFIX="true"
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Enable completion (this needs to be done before sourcing plugins)
+autoload -Uz compinit compinit
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # ensure exports is loaded
 source "$HOME/.config/zsh/profile/00-exports.zsh"
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -31,27 +34,24 @@ if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 fi
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Enable completion (this needs to be done before sourcing plugins)
-autoload -Uz compinit compinit
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Add user functions to $fpath
 fpath=("$HOME/.config/zsh/functions" $fpath)
-for function in "$HOME/.config/zsh/functions/"*.zsh; do
-  source $function 2>/dev/null
+for function in "$HOME/.config/zsh/functions"/*.zsh; do
+  source "$function" 2>/dev/null
 done
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Load all files from .config/zsh/profile directory
 if [[ -d "$HOME/.config/zsh/profile" ]]; then
-  for profile in $HOME/.config/zsh/profile/*.zsh; do
-    source $profile 2>/dev/null
+  for profile in "$HOME/.config/zsh/profile"/*.zsh; do
+    source "$profile" 2>/dev/null
   done
   unset profile
 fi
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Load all files from .config/zsh/completions directory
 if [[ -d "$HOME/.config/zsh/completions" ]]; then
-  for completions in $HOME/.config/zsh/completions/*.zsh; do
-    source $completions 2>/dev/null
+  for completions in "$HOME/.config/zsh/completions"/*.zsh; do
+    source "$completions" 2>/dev/null
   done
   unset completions
 fi
@@ -67,7 +67,9 @@ if [[ -f "$ZSH/oh-my-zsh.sh" ]] && [[ -z "$UPDATE_ZSH_DAYS" ]]; then
 fi
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # $fpath should not be empty for this to work.
-for func in $^fpath/*(N-.x:t); do autoload -U $func; done
+for func in $^fpath/*(N-.x:t); do
+  autoload -U $func
+done
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Enable edit-command-line
 autoload -U edit-command-line
