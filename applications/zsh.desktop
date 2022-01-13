@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=true
+Exec=zsh
+Name=zsh
+Icon=zsh
+Categories=ConsoleOnly;System;
