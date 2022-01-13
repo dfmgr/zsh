@@ -1,5 +1,4 @@
 #!/usr/bin/env zsh
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # zplug install
 ZPLUG_HOME="${ZPLUG_HOME:-$HOME/.local/share/zsh/zplug}"

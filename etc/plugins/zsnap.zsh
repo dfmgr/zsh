@@ -1,8 +1,7 @@
 #!/usr/bin/env zsh
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # zsnap install
-ZSNAP_HOME="${ZSNAP_HOME:-$HOME/.local/share/zsh/z-snap}"
+ZSNAP_HOME="${ZSNAP_HOME:-$HOME/.local/share/zsh/zsnap}"
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 if [[ ! -d "$ZSNAP_HOME/.git" ]]; then
   git clone "https://github.com/marlonrichert/zsh-snap" "$ZSNAP_HOME" &>/dev/null

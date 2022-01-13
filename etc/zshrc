@@ -133,7 +133,7 @@ if [[ -f "$HOME/.config/local/zsh.local" ]]; then
   source "$HOME/.config/local/zsh.local" 2>/dev/null
 fi
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Source users file
+# Source users file server
 if [[ -f "$HOME/.config/local/zsh.servers.local" ]]; then
   source "$HOME/.config/local/zsh.server.local" 2>/dev/null
 fi

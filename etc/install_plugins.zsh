@@ -15,7 +15,7 @@ fi
 
 if [[ ! -d "$HOME/.local/share/zsh/oh-my-zsh/custom/themes/powerlevel9k/.git" ]]; then
   echo "Installing powerlevel9k"
-  git clone -q https://github.com/bhilburn/powerlevel9k.git "$HOME/.local/share/zsh/oh-my-zsh/custom/themes/powerlevel9k"
+  git clone -q "https://github.com/bhilburn/powerlevel9k.git" "$HOME/.local/share/zsh/oh-my-zsh/custom/themes/powerlevel9k"
 fi
 
 if [[ ! -d "$HOME/.local/share/zsh/oh-my-zsh/custom/themes/powerlevel10k/.git" ]]; then
@@ -23,9 +23,9 @@ if [[ ! -d "$HOME/.local/share/zsh/oh-my-zsh/custom/themes/powerlevel10k/.git" ]
   git clone -q "https://github.com/romkatv/powerlevel10k.git" "$HOME/.local/share/zsh/oh-my-zsh/custom/themes/powerlevel10k" &>/dev/null
 fi
 
-if [[ ! -d "$HOME/.local/share/zsh/zsh-snap/.git" ]]; then
+if [[ ! -d "$HOME/.local/share/zsh/zsnap/.git" ]]; then
   echo "Installing zsh-snap"
-  git clone -q "https://github.com/marlonrichert/zsh-snap" "$HOME/.local/share/zsh/zsh-snap" &>/dev/null
+  git clone -q "https://github.com/marlonrichert/zsh-snap" "$HOME/.local/share/zsh/zsnap" &>/dev/null
 fi
 
 if [[ ! -d "$HOME/.local/share/zsh/zplug" ]]; then
