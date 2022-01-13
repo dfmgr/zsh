@@ -17,9 +17,13 @@ ZSH_DISABLE_COMPFIX="true"
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Enable completion (this needs to be done before sourcing plugins)
 autoload -Uz compinit compinit
+autoload -U bashcompinit
+bashcompinit
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # ensure exports is loaded
-source "$HOME/.config/zsh/profile/00-exports.zsh"
+if [ -f "$HOME/.config/zsh/profile/00-exports.zsh" ]; then
+  source "$HOME/.config/zsh/profile/00-exports.zsh"
+fi
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # include .profile if it exists
 if [ -f "$HOME/.profile" ]; then
@@ -83,7 +87,7 @@ ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 ZSH_AUTOSUGGEST_USE_ASYNC=1
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Set title - function set
-DISABLE_AUTO_TITLE="true"
+DISABLE_AUTO_TITLE="false"
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Accept the current autosuggestion
 #bindkey "^ " autosuggest-accept
