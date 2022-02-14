@@ -47,16 +47,16 @@ if [[ -f "$ZSH/oh-my-zsh.sh" ]]; then
 fi
 # load theme powerlevel9k
 # if [[ -f "$ZSH_CUSTOM/themes/powerlevel9k/powerlevel9k.zsh-theme" ]]; then
+#   ZSH_THEME="powerlevel9k/powerlevel9k"
 #   source "$ZSH_CUSTOM/themes/powerlevel9k/powerlevel9k.zsh-theme" 2>/dev/null
 #   source "$HOME/.config/zsh/themes/powerlevel-09k.zsh"
-#   ZSH_THEME="powerlevel9k/powerlevel9k"
 # fi
 # load theme powerlevel10k
-# if [[ -f "$ZSH_CUSTOM/themes/powerlevel10k/powerlevel10k.zsh-theme" ]]; then
-#   source "$ZSH_CUSTOM/themes/powerlevel10k/powerlevel10k.zsh-theme" 2>/dev/null
-#   source "$HOME/.config/zsh/themes/powerlevel-10k.zsh"
-#   ZSH_THEME="powerlevel10k/powerlevel10k"
-# fi
+if [[ -f "$ZSH_CUSTOM/themes/powerlevel10k/powerlevel10k.zsh-theme" ]]; then
+  ZSH_THEME="powerlevel10k/powerlevel10k"
+  source "$ZSH_CUSTOM/themes/powerlevel10k/powerlevel10k.zsh-theme" 2>/dev/null
+  source "$HOME/.config/zsh/themes/powerlevel-10k.zsh"
+fi
 
 # Load plugins
 plugins=(
@@ -72,4 +72,5 @@ plugins=(
   zsh_reload
   zsh-syntax-highlighting
 )
+
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
