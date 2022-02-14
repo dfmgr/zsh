@@ -14,7 +14,7 @@
 # @Resource      :
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 show_welcome() {
-  if [ ! -f $HOME/.config/zsh/welcome.msg ]; then
+  if [ ! -f "$HOME/.config/zsh/welcome.msg" ]; then
     printf_green "Welcome to your system!"
     printf_green "It would appear that it"
     printf_green "has been setup successfully."
@@ -27,13 +27,13 @@ show_welcome() {
     ask_for_confirmation "Show this message again?"
     printf "\n"
     if ! answer_is_yes; then
-      touch $HOME/.config/zsh/welcome.msg
+      touch "$HOME/.config/zsh/welcome.msg"
     fi
   fi
 }
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 show_welcome_tor() {
-  if [ ! -f $HOME/.config/zsh/welcome_tor.msg ]; then
+  if [ ! -f "$HOME/.config/zsh/welcome_tor.msg" ]; then
     if [ ! -f /usr/local/etc/tor/install.sh ]; then
       printf_info "The tor package has not been installed"
       printf_green "You can install it by running dotfiles install tor"
@@ -47,7 +47,7 @@ show_welcome_tor() {
           ask_for_confirmation "Show this message again?"
           printf "\n"
           if ! answer_is_yes; then
-            touch $HOME/.config/zsh/welcome_tor.msg
+            touch "$HOME/.config/zsh/welcome_tor.msg"
           fi
         fi
       fi
