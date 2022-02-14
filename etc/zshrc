@@ -61,16 +61,6 @@ if [[ -d "$HOME/.config/zsh/completions" ]]; then
   unset completions
 fi
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Make sure zplug is loaded
-if [[ -f "$ZPLUG_HOME/init.zsh" ]]; then
-  source "$ZPLUG_HOME/init.zsh" 2>/dev/null
-fi
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Make sure oh-my-zsh is loaded
-if [[ -f "$ZSH/oh-my-zsh.sh" ]] && [[ -z "$UPDATE_ZSH_DAYS" ]]; then
-  source "$ZSH/oh-my-zsh.sh" 2>/dev/null
-fi
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # $fpath should not be empty for this to work.
 for func in $^fpath/*(N-.x:t); do
   autoload -U $func
