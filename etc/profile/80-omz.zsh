@@ -1,5 +1,4 @@
 #!/usr/bin/env zsh
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # oh-my-zsh install
 export UPDATE_ZSH_DAYS=30
@@ -46,12 +45,12 @@ esac
 if [[ -f "$ZSH/oh-my-zsh.sh" ]]; then
   source "$ZSH/oh-my-zsh.sh" 2>/dev/null
 fi
-# # load theme powerlevel9k
-if [[ -f "$ZSH_CUSTOM/themes/powerlevel9k/powerlevel9k.zsh-theme" ]]; then
-  source "$ZSH_CUSTOM/themes/powerlevel9k/powerlevel9k.zsh-theme" 2>/dev/null
-  source "$HOME/.config/zsh/themes/powerlevel-09k.zsh"
-  ZSH_THEME="powerlevel9k/powerlevel9k"
-fi
+# load theme powerlevel9k
+# if [[ -f "$ZSH_CUSTOM/themes/powerlevel9k/powerlevel9k.zsh-theme" ]]; then
+#   source "$ZSH_CUSTOM/themes/powerlevel9k/powerlevel9k.zsh-theme" 2>/dev/null
+#   source "$HOME/.config/zsh/themes/powerlevel-09k.zsh"
+#   ZSH_THEME="powerlevel9k/powerlevel9k"
+# fi
 # load theme powerlevel10k
 # if [[ -f "$ZSH_CUSTOM/themes/powerlevel10k/powerlevel10k.zsh-theme" ]]; then
 #   source "$ZSH_CUSTOM/themes/powerlevel10k/powerlevel10k.zsh-theme" 2>/dev/null
