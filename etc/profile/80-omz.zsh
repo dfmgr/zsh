@@ -5,7 +5,7 @@ export UPDATE_ZSH_DAYS=30
 export ZSH="${ZSH:-$HOME/.local/share/zsh/oh-my-zsh}"
 export ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.local/share/zsh/oh-my-zsh/custom}"
 export ZSH_CACHEDIR="${ZSH_CACHEDIR:-$HOME/.cache/oh-my-zsh}"
-
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 if [[ ! -d "$ZSH/.git" ]]; then
   echo "Installing oh-my-sh plugin and themes"
   rm -Rf "$ZSH"
@@ -20,12 +20,12 @@ fi
 if [[ ! -d "$ZSH_CUSTOM/themes/powerlevel9k/.git" ]]; then
   git clone -q "https://github.com/bhilburn/powerlevel9k.git" "$ZSH_CUSTOM/themes/powerlevel9k"
 fi
-
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # oh-my-zsh cache dir
 if [[ ! -d "$ZSH_CACHEDIR" ]]; then
   mkdir -p "$ZSH_CACHEDIR" 2>/dev/null
 fi
-
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # what OS?
 case "$(uname)" in
 Darwin)
@@ -57,7 +57,7 @@ if [[ -f "$ZSH_CUSTOM/themes/powerlevel10k/powerlevel10k.zsh-theme" ]]; then
   source "$ZSH_CUSTOM/themes/powerlevel10k/powerlevel10k.zsh-theme" 2>/dev/null
   source "$HOME/.config/zsh/themes/powerlevel-10k.zsh"
 fi
-
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Load plugins
 plugins=(
   asdf

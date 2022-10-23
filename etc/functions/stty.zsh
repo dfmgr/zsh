@@ -13,9 +13,9 @@
 # @Other         :
 # @Resource      :
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-_set_stty() {
-  tty -s && stty stop undef
-  tty -s && stty start undef
-  [[ "$OSTYPE" = darwin* ]] && tty -s && stty discard undef
-}
+# _set_stty() {
+# tty -s && stty stop undef
+# tty -s && stty start undef
+# [[ "$OSTYPE" = darwin* ]] && tty -s && stty discard undef
+# }
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

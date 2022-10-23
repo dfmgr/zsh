@@ -8,3 +8,4 @@ export ZDOTDIR="$HOME/.config/zsh"
 export HISTFILE="$HOME/.cache/zhistory"
 export SAVEHIST=5000
 export HISTSIZE=2000
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

@@ -78,7 +78,7 @@ ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 ZSH_AUTOSUGGEST_USE_ASYNC=1
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Set title - function set
-DISABLE_AUTO_TITLE="false"
+DISABLE_AUTO_TITLE="true"
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Accept the current autosuggestion
 #bindkey "^ " autosuggest-accept
