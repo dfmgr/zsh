@@ -55,8 +55,10 @@ fi
 if [[ -f "$ZSH_CUSTOM/themes/powerlevel10k/powerlevel10k.zsh-theme" ]]; then
   ZSH_THEME="powerlevel10k/powerlevel10k"
   source "$ZSH_CUSTOM/themes/powerlevel10k/powerlevel10k.zsh-theme" 2>/dev/null
-  source "$HOME/.config/zsh/themes/powerlevel-10k.zsh"
 fi
+# To customize prompt, run `p10k configure` or edit ~/.config/zsh/themes/powerlevel-10k.zsh.
+[[ ! -f ~/.config/zsh/themes/powerlevel-10k.zsh ]] || source ~/.config/zsh/themes/powerlevel-10k.zsh
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Load plugins
 plugins=(
