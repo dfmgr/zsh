@@ -4,5 +4,5 @@ Type=Application
 Terminal=true
 Exec=zsh
 Name=zsh
-Icon=zsh
+Icon=org.xfce.terminal-settings
 Categories=ConsoleOnly;System;
