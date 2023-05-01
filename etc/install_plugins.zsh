@@ -22,37 +22,37 @@ fi
 # fi
 
 ## oh-my-zsh install/update
-if [[ -d "$HOME/.local/share/zsh/oh-my-zsh/.git" ]]; then
+if [[ -d "$HOME/.local/share/zsh/plugins/oh-my-zsh/.git" ]]; then
   echo "Updating oh-my-sh plugin and themes"
-  git -C "$HOME/.local/share/zsh/oh-my-zsh" pull &>/dev/null
-elif [[ ! -d "$HOME/.local/share/zsh/oh-my-zsh/.git" ]]; then
+  git -C "$HOME/.local/share/zsh/plugins/oh-my-zsh" pull &>/dev/null
+elif [[ ! -d "$HOME/.local/share/zsh/plugins/oh-my-zsh/.git" ]]; then
   echo "Installing oh-my-sh plugin and themes"
-  git clone -q "https://github.com/robbyrussell/oh-my-zsh" "$HOME/.local/share/zsh/oh-my-zsh" &>/dev/null
+  git clone -q "https://github.com/robbyrussell/oh-my-zsh" "$HOME/.local/share/zsh/plugins/oh-my-zsh" &>/dev/null
 fi
 
 ## zsh-syntax-highlighting install/update
-if [[ -d "$HOME/.local/share/zsh/oh-my-zsh/custom/plugins/zsh-syntax-highlighting/.git" ]]; then
+if [[ -d "$HOME/.local/share/zsh/plugins/oh-my-zsh/custom/plugins/zsh-syntax-highlighting/.git" ]]; then
   echo "Updating zsh-syntax-highlighting"
-  git -C "$HOME/.local/share/zsh/oh-my-zsh/custom/plugins/zsh-syntax-highlighting" pull &>/dev/null
-elif [[ ! -d "$HOME/.local/share/zsh/oh-my-zsh/custom/plugins/zsh-syntax-highlighting/.git" ]]; then
+  git -C "$HOME/.local/share/zsh/plugins/oh-my-zsh/custom/plugins/zsh-syntax-highlighting" pull &>/dev/null
+elif [[ ! -d "$HOME/.local/share/zsh/plugins/oh-my-zsh/custom/plugins/zsh-syntax-highlighting/.git" ]]; then
   echo "Installing zsh-syntax-highlighting"
-  git clone -q "https://github.com/zsh-users/zsh-syntax-highlighting" "$HOME/.local/share/zsh/oh-my-zsh/custom/plugins/zsh-syntax-highlighting" &>/dev/null
+  git clone -q "https://github.com/zsh-users/zsh-syntax-highlighting" "$HOME/.local/share/zsh/plugins/oh-my-zsh/custom/plugins/zsh-syntax-highlighting" &>/dev/null
 fi
 
 ## powerlevel9k install/update
-if [[ -d "$HOME/.local/share/zsh/oh-my-zsh/custom/themes/powerlevel9k/.git" ]]; then
+if [[ -d "$HOME/.local/share/zsh/plugins/oh-my-zsh/custom/themes/powerlevel9k/.git" ]]; then
   echo "Updating powerlevel9k"
-  git -C "$HOME/.local/share/zsh/oh-my-zsh/custom/themes/powerlevel9k" pull &>/dev/null
-elif [[ ! -d "$HOME/.local/share/zsh/oh-my-zsh/custom/themes/powerlevel9k/.git" ]]; then
+  git -C "$HOME/.local/share/zsh/plugins/oh-my-zsh/custom/themes/powerlevel9k" pull &>/dev/null
+elif [[ ! -d "$HOME/.local/share/zsh/plugins/oh-my-zsh/custom/themes/powerlevel9k/.git" ]]; then
   echo "Installing powerlevel9k"
-  git clone -q "https://github.com/bhilburn/powerlevel9k.git" "$HOME/.local/share/zsh/oh-my-zsh/custom/themes/powerlevel9k" &>/dev/null
+  git clone -q "https://github.com/bhilburn/powerlevel9k.git" "$HOME/.local/share/zsh/plugins/oh-my-zsh/custom/themes/powerlevel9k" &>/dev/null
 fi
 
 ## powerlevel10k install/update
-if [[ -d "$HOME/.local/share/zsh/oh-my-zsh/custom/themes/powerlevel10k/.git" ]]; then
+if [[ -d "$HOME/.local/share/zsh/plugins/oh-my-zsh/custom/themes/powerlevel10k/.git" ]]; then
   echo "Updating powerlevel10k"
-  git -C "$HOME/.local/share/zsh/oh-my-zsh/custom/themes/powerlevel10k" pull &>/dev/null
-elif [[ ! -d "$HOME/.local/share/zsh/oh-my-zsh/custom/themes/powerlevel10k/.git" ]]; then
+  git -C "$HOME/.local/share/zsh/plugins/oh-my-zsh/custom/themes/powerlevel10k" pull &>/dev/null
+elif [[ ! -d "$HOME/.local/share/zsh/plugins/oh-my-zsh/custom/themes/powerlevel10k/.git" ]]; then
   echo "Installing powerlevel10k"
-  git clone -q "https://github.com/romkatv/powerlevel10k.git" "$HOME/.local/share/zsh/oh-my-zsh/custom/themes/powerlevel10k" &>/dev/null
+  git clone -q "https://github.com/romkatv/powerlevel10k.git" "$HOME/.local/share/zsh/plugins/oh-my-zsh/custom/themes/powerlevel10k" &>/dev/null
 fi

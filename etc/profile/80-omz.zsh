@@ -2,8 +2,8 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # oh-my-zsh install
 export UPDATE_ZSH_DAYS=30
-export ZSH="${ZSH:-$HOME/.local/share/zsh/oh-my-zsh}"
-export ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.local/share/zsh/oh-my-zsh/custom}"
+export ZSH="${ZSH:-$HOME/.local/share/zsh/plugins/oh-my-zsh}"
+export ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.local/share/zsh/plugins/oh-my-zsh/custom}"
 export ZSH_CACHEDIR="${ZSH_CACHEDIR:-$HOME/.cache/oh-my-zsh}"
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 if [[ ! -d "$ZSH/.git" ]]; then
