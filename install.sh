@@ -204,10 +204,10 @@ __run_post_install() {
 # Custom plugin function
 __custom_plugin() {
   local getRunStatus=0
-  if [ -d "$PLUGDIR/oh-my-zsh/.git" ]; then
-    execute "git_update $PLUGDIR/oh-my-zsh" "Updating plugin oh-my-zsh"
+  if [ -d "$PLUGIN_DIR/oh-my-zsh/.git" ]; then
+    execute "git_update $PLUGIN_DIR/oh-my-zsh" "Updating plugin oh-my-zsh"
   else
-    execute "git_clone https://github.com/robbyrussell/oh-my-zsh $PLUGDIR/oh-my-zsh" "Installing plugin oh-my-zsh"
+    execute "git_clone https://github.com/robbyrussell/oh-my-zsh $PLUGIN_DIR/oh-my-zsh" "Installing plugin oh-my-zsh"
   fi
   return $getRunStatus
 }
