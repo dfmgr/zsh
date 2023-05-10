@@ -166,7 +166,7 @@ WIN_OS_PACKAGES=""
 AUR_PACKAGES=""
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Define required system python packages
-PYTHON_PACKAGES="thefuck"
+PYTHON_PACKAGES=""
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Define required system perl packages
 PERL_PACKAGES=""
@@ -175,7 +175,7 @@ PERL_PACKAGES=""
 NODEJS=""
 PERL_CPAN=""
 RUBY_GEMS=""
-PYTHON_PIP=""
+PYTHON_PIP="thefuck"
 PHP_COMPOSER=""
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Run custom actions
@@ -189,7 +189,8 @@ __run_post_message() {
 # Define pre-install scripts
 __run_pre_install() {
   local getRunStatus=0
-
+  [ -d "$APPDIR" ] || __mkdir "$APPDIR"
+  [ -e "$HOME/.zshrc" ] && __mv_f "$HOME/.zshrc" "$APPDIR/zshrc.orig.bak"
   return $getRunStatus
 }
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
