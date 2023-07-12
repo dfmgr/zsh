@@ -204,6 +204,13 @@ __run_prepost_install() {
 # run after primary post install function
 __run_post_install() {
   local getRunStatus=0
+  if [ -f "$APPDIR/install_plugins.zsh" ]; then
+    zsh -c "$APPDIR/install_plugins.zsh" || false
+    if [ $? -ne 0 ]; then
+      printf '%s\n' "failed to install zsh plugins" >&2
+      return 1
+    fi
+  fi
 
   return $getRunStatus
 }
