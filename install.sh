@@ -205,6 +205,9 @@ __run_prepost_install() {
 # run after primary post install function
 __run_post_install() {
   local getRunStatus=0
+  if [ -f "$APPDIR/zshrc" ]; then
+    __symlink "$APPDIR/zshrc" "$HOME/.zshrc"
+  fi 
   if [ -f "$APPDIR/install_plugins.zsh" ]; then
     zsh -c "$APPDIR/install_plugins.zsh" || false
     if [ $? -ne 0 ]; then
