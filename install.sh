@@ -190,6 +190,7 @@ __run_post_message() {
 __run_pre_install() {
   local getRunStatus=0
   [ -d "$APPDIR" ] || __mkdir "$APPDIR"
+  [ -L "$HOME/.zshrc" ] && unlink -f "$HOME/.zshrc"
   [ -e "$HOME/.zshrc" ] && __mv_f "$HOME/.zshrc" "$APPDIR/zshrc.orig.bak"
   return $getRunStatus
 }
