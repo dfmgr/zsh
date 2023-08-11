@@ -2,7 +2,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ##@Version       : 202103212059-git
 # @Author        : Jason Hempstead
-# @Contact       : jason@casjaysdev.com
+# @Contact       : jason@casjaysdev.pro
 # @License       : WTFPL
 # @ReadME        : packagemanager.zsh
 # @Copyright     : Copyright: (c) 2021 Jason Hempstead, CasjaysDev
