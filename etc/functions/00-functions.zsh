@@ -20,14 +20,15 @@ ICON_WARN="[ ❗ ]"
 ICON_ERROR="[ ✖ ]"
 ICON_QUESTION="[ ❓ ]"
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-printf_color() { printf "%b" "$(tput setaf "$2" 2>/dev/null)" "$1" "$(tput sgr0 2>/dev/null)"; }
-printf_normal() { printf_color "\t\t$1\n" "0"; }
-printf_green() { printf_color "\t\t$1\n" 2; }
-printf_red() { printf_color "\t\t$1\n" 1; }
-printf_purple() { printf_color "\t\t$1\n" 5; }
-printf_yellow() { printf_color "\t\t$1\n" 3; }
-printf_blue() { printf_color "\t\t$1\n" 4; }
-printf_cyan() { printf_color "\t\t$1\n" 6; }
+# Optimized: Use bright ANSI codes for better visibility on both dark and light backgrounds
+printf_color() { printf "%b" "\e[9${2}m" "$1" "\e[0m"; }  # 90-97 range (bright colors)
+printf_normal() { printf_color "\t\t$1\n" "7"; }
+printf_green() { printf_color "\t\t$1\n" "2"; }
+printf_red() { printf_color "\t\t$1\n" "1"; }
+printf_purple() { printf_color "\t\t$1\n" "5"; }
+printf_yellow() { printf_color "\t\t$1\n" "3"; }
+printf_blue() { printf_color "\t\t$1\n" "4"; }
+printf_cyan() { printf_color "\t\t$1\n" "6"; }
 printf_info() { printf_color "\t\t$ICON_INFO $1\n" 3; }
 printf_success() { printf_color "\t\t$ICON_GOOD $1\n" 2; }
 printf_error() { printf_color "\t\t$ICON_ERROR $1 $2\n" 1; }
