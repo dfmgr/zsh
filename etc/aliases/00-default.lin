@@ -63,16 +63,16 @@ alias ports='sudo netstat -taupln | grep --color=auto LISTEN '
 alias flushdns='sudo systemd-resolve --flush-caches '
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # TMUX
-[ -f "$HOME/.config/tmux/singlerc.conf" ] && which tmux >/dev/null 2>&1 && alias tmux-single='tmux -f $HOME/.config/tmux/singlerc.conf new-session -D -A -s single ' || alias tmux-ssh='tmux '
-[ -f "$HOME/.config/tmux/tmux.ssh.conf" ] && which tmux >/dev/null 2>&1 && alias tmux-ssh='tmux -f $HOME/.config/tmux/tmux.ssh.conf new-session -D -A -s ssh ' || alias tmux-ssh='tmux '
+[ -f "$HOME/.config/tmux/singlerc.conf" ] && command -v tmux >/dev/null 2>&1 && alias tmux-single='tmux -f $HOME/.config/tmux/singlerc.conf new-session -D -A -s single ' || alias tmux-ssh='tmux '
+[ -f "$HOME/.config/tmux/tmux.ssh.conf" ] && command -v tmux >/dev/null 2>&1 && alias tmux-ssh='tmux -f $HOME/.config/tmux/tmux.ssh.conf new-session -D -A -s ssh ' || alias tmux-ssh='tmux '
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # SCREEN
-[ -f "$HOME/.config/screen/dev/sshrc" ] && which screen >/dev/null 2>&1 && alias screen-ssh='\screen -c $HOME/.config/screen/dev/sshrc ' || alias screen-ssh='\screen -t ssh '
-[ -f "$HOME/.config/screen/dev/noderc" ] && which screen >/dev/null 2>&1 && alias screen-node='\screen -c $HOME/.config/screen/dev/noderc ' || alias screen-node='\screen -t node '
-[ -f "$HOME/.config/screen/singlerc" ] && which screen >/dev/null 2>&1 && alias screen-single='\screen -c $HOME/.config/screen/singlerc ' || alias screen-single='\screen -t single '
-[ -f "$HOME/.config/screen/productivityrc" ] && which screen >/dev/null 2>&1 && alias screen-prod='\screen -c $HOME/.config/screen/productivityrc ' || alias screen-single='\screen -t prod '
-[ -f "$HOME/.config/screen/dev/developmentrc" ] && which screen >/dev/null 2>&1 && alias screen-dev='\screen -c $HOME/.config/screen/dev/developmentrc ' || alias screen-dev='\screen -t dev '
-[ -f "$HOME/.config/screen/other/socialrc" ] && which screen >/dev/null 2>&1 && alias screen-social='\screen -c $HOME/.config/screen/other/socialrc ' || alias screen-social='\screen -t social '
+[ -f "$HOME/.config/screen/dev/sshrc" ] && command -v screen >/dev/null 2>&1 && alias screen-ssh='\screen -c $HOME/.config/screen/dev/sshrc ' || alias screen-ssh='\screen -t ssh '
+[ -f "$HOME/.config/screen/dev/noderc" ] && command -v screen >/dev/null 2>&1 && alias screen-node='\screen -c $HOME/.config/screen/dev/noderc ' || alias screen-node='\screen -t node '
+[ -f "$HOME/.config/screen/singlerc" ] && command -v screen >/dev/null 2>&1 && alias screen-single='\screen -c $HOME/.config/screen/singlerc ' || alias screen-single='\screen -t single '
+[ -f "$HOME/.config/screen/productivityrc" ] && command -v screen >/dev/null 2>&1 && alias screen-prod='\screen -c $HOME/.config/screen/productivityrc ' || alias screen-single='\screen -t prod '
+[ -f "$HOME/.config/screen/dev/developmentrc" ] && command -v screen >/dev/null 2>&1 && alias screen-dev='\screen -c $HOME/.config/screen/dev/developmentrc ' || alias screen-dev='\screen -t dev '
+[ -f "$HOME/.config/screen/other/socialrc" ] && command -v screen >/dev/null 2>&1 && alias screen-social='\screen -c $HOME/.config/screen/other/socialrc ' || alias screen-social='\screen -t social '
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # shell
 alias profilerc='source ~/.profile '
@@ -89,11 +89,11 @@ alias profilerc='source ~/.profile '
 [ -n "$DISPLAY" ] && alias sshq='ssh -qX' || alias ssh='ssh -q '
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Package management
-[ "$(uname -s)" = Linux ] && which apt >/dev/null 2>&1 && alias apt='sudo apt '
-[ "$(uname -s)" = Linux ] && which apt-get >/dev/null 2>&1 && alias apt-get='sudo apt-get '
-[ "$(uname -s)" = Linux ] && which dnf >/dev/null 2>&1 && alias dnf='sudo dnf '
-[ "$(uname -s)" = Linux ] && which yum >/dev/null 2>&1 && alias yum='sudo yum '
-[ "$(uname -s)" = Linux ] && which pacman >/dev/null 2>&1 && alias pacman='sudo pacman '
+[ "$(uname -s)" = Linux ] && command -v apt >/dev/null 2>&1 && alias apt='sudo apt '
+[ "$(uname -s)" = Linux ] && command -v apt-get >/dev/null 2>&1 && alias apt-get='sudo apt-get '
+[ "$(uname -s)" = Linux ] && command -v dnf >/dev/null 2>&1 && alias dnf='sudo dnf '
+[ "$(uname -s)" = Linux ] && command -v yum >/dev/null 2>&1 && alias yum='sudo yum '
+[ "$(uname -s)" = Linux ] && command -v pacman >/dev/null 2>&1 && alias pacman='sudo pacman '
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # ls
 alias ls='ls -h --color=auto '
@@ -112,22 +112,22 @@ alias ....='builtin cd ../../../'
 alias .....='builtin cd ../../../../'
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # VisualStudio code
-if which code-oss >/dev/null 2>&1; then
+if command -v code-oss >/dev/null 2>&1; then
   alias code='code-oss '
   alias codew='code-oss -w '
   alias code-np='code-oss --disable-extensions '
-elif which code-insiders >/dev/null 2>&1; then
+elif command -v code-insiders >/dev/null 2>&1; then
   alias code='code-insiders '
   alias codew='code-insiders -w '
   alias code-np='code-insiders --disable-extensions '
-elif which code >/dev/null 2>&1; then
+elif command -v code >/dev/null 2>&1; then
   alias code='code '
   alias codew='code -w '
   alias code-np='code --disable-extensions '
 fi
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Powershell
-if which pwsh-preview >/dev/null 2>&1; then
+if command -v pwsh-preview >/dev/null 2>&1; then
   alias pwsh='pwsh-preview '
 fi
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -137,61 +137,61 @@ alias vis='vim +set si '
 alias svim='sudo vim '
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #Set neovim
-if which nvim >/dev/null 2>&1 && [ -f "$HOME/.config/neovim/init.vim" ]; then
+if command -v nvim >/dev/null 2>&1 && [ -f "$HOME/.config/neovim/init.vim" ]; then
   alias nvim='nvim -u $HOME/.config/neovim/init.vim'
   alias neovim='nvim -u $HOME/.config/neovim/init.vim'
-elif which neovim >/dev/null 2>&1 && [ -f "$HOME/.config/nvim/init.vim" ]; then
+elif command -v neovim >/dev/null 2>&1 && [ -f "$HOME/.config/nvim/init.vim" ]; then
   alias nvim='neovim -u $HOME/.config/nvim/init.vim'
   alias neovim='nvim -u $HOME/.config/neovim/init.vim'
 fi
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #Set docker
-which minikube >/dev/null 2>&1 && alias kubectl='minikube kubectl '
+command -v minikube >/dev/null 2>&1 && alias kubectl='minikube kubectl '
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # trash aliases.
-which trash >/dev/null 2>&1 && alias empty-trash='trash empty ' || alias empty-trash='rm -Rf ~/.local/share/Trash/files/* && ~/.local/share/Trash/files/info/* '
+command -v trash >/dev/null 2>&1 && alias empty-trash='trash empty ' || alias empty-trash='rm -Rf ~/.local/share/Trash/files/* && ~/.local/share/Trash/files/info/* '
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Hide/show icons.
-which gsettings >/dev/null 2>&1 && alias desktop-icons-hide='gsettings set org.gnome.desktop.background show-desktop-icons false '
-which gsettings >/dev/null 2>&1 && alias desktop-icons-show='gsettings set org.gnome.desktop.background show-desktop-icons true '
+command -v gsettings >/dev/null 2>&1 && alias desktop-icons-hide='gsettings set org.gnome.desktop.background show-desktop-icons false '
+command -v gsettings >/dev/null 2>&1 && alias desktop-icons-show='gsettings set org.gnome.desktop.background show-desktop-icons true '
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Lock Screen
-which xflock4 >/dev/null 2>&1 && alias afk='xflock4 '
-which gnome-screensaver-command >/dev/null 2>&1 && alias afk='gnome-screensaver-command --lock '
+command -v xflock4 >/dev/null 2>&1 && alias afk='xflock4 '
+command -v gnome-screensaver-command >/dev/null 2>&1 && alias afk='gnome-screensaver-command --lock '
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # logout
-which xfce4-session-logout >/dev/null 2>&1 && alias logout='xfce4-session-logout '
+command -v xfce4-session-logout >/dev/null 2>&1 && alias logout='xfce4-session-logout '
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Open command
-[ "$(uname -s)" = Linux ] && which xdg-open >/dev/null 2>&1 && alias open='xdg-open '
+[ "$(uname -s)" = Linux ] && command -v xdg-open >/dev/null 2>&1 && alias open='xdg-open '
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # youtube-dl
-which youtube-dl >/dev/null 2>&1 && alias nightcorea='ytda nightcorea '
-which youtube-dl >/dev/null 2>&1 && alias nightcorev='ytda nightcorev '
-which youtube-dl >/dev/null 2>&1 && alias ytv-best='ytda ytv '
-which youtube-dl >/dev/null 2>&1 && alias yta-aac='ytda aac '
-which youtube-dl >/dev/null 2>&1 && alias yta-best='ytda yta '
-which youtube-dl >/dev/null 2>&1 && alias yta-flac='ytda flac '
-which youtube-dl >/dev/null 2>&1 && alias yta-m4a='ytda m4a '
-which youtube-dl >/dev/null 2>&1 && alias yta-mp3='ytda mp3 '
-which youtube-dl >/dev/null 2>&1 && alias yta-opus='ytda opus '
-which youtube-dl >/dev/null 2>&1 && alias yta-vorbis='ytda vorbis '
-which youtube-dl >/dev/null 2>&1 && alias yta-wav='ytda wav '
-which youtube-dl >/dev/null 2>&1 && alias streamyt='ytstream '
+command -v youtube-dl >/dev/null 2>&1 && alias nightcorea='ytda nightcorea '
+command -v youtube-dl >/dev/null 2>&1 && alias nightcorev='ytda nightcorev '
+command -v youtube-dl >/dev/null 2>&1 && alias ytv-best='ytda ytv '
+command -v youtube-dl >/dev/null 2>&1 && alias yta-aac='ytda aac '
+command -v youtube-dl >/dev/null 2>&1 && alias yta-best='ytda yta '
+command -v youtube-dl >/dev/null 2>&1 && alias yta-flac='ytda flac '
+command -v youtube-dl >/dev/null 2>&1 && alias yta-m4a='ytda m4a '
+command -v youtube-dl >/dev/null 2>&1 && alias yta-mp3='ytda mp3 '
+command -v youtube-dl >/dev/null 2>&1 && alias yta-opus='ytda opus '
+command -v youtube-dl >/dev/null 2>&1 && alias yta-vorbis='ytda vorbis '
+command -v youtube-dl >/dev/null 2>&1 && alias yta-wav='ytda wav '
+command -v youtube-dl >/dev/null 2>&1 && alias streamyt='ytstream '
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Media
-which castero >/dev/null 2>&1 && alias podcasts='castero '
-which spotifyd >/dev/null 2>&1 && alias spotify='spotifyd '
-which pianobar >/dev/null 2>&1 && alias pandora='pianobar '
-which tizonia >/dev/null 2>&1 && alias cloudplayer='tizonia '
-which youtube-viewer >/dev/null 2>&1 && alias youtube='youtube-viewer '
-which mpc >/dev/null 2>&1 && [ -z "$MPDSERVER" ] && alias mpc='mpc ' || alias mpc='mpc -h "$MPDSERVER" '
+command -v castero >/dev/null 2>&1 && alias podcasts='castero '
+command -v spotifyd >/dev/null 2>&1 && alias spotify='spotifyd '
+command -v pianobar >/dev/null 2>&1 && alias pandora='pianobar '
+command -v tizonia >/dev/null 2>&1 && alias cloudplayer='tizonia '
+command -v youtube-viewer >/dev/null 2>&1 && alias youtube='youtube-viewer '
+command -v mpc >/dev/null 2>&1 && [ -z "$MPDSERVER" ] && alias mpc='mpc ' || alias mpc='mpc -h "$MPDSERVER" '
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Python
-which pipx >/dev/null 2>&1 || alias pipx='pip install -U pipx && alias pipx="pipx" '
+command -v pipx >/dev/null 2>&1 || alias pipx='pip install -U pipx && alias pipx="pipx" '
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Other
-which anime-dl >/dev/null 2>&1 && alias anime-cli='anime-dl '
+command -v anime-dl >/dev/null 2>&1 && alias anime-cli='anime-dl '
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # list functions
 alias list-my-functions='typeset -F | less '
@@ -204,7 +204,7 @@ alias mylatlong='mylocation | grep --color=none "LAT\|LON" '
 alias emj='emojis '
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # other
-which thefuck >/dev/null 2>&1 || alias thefuck='rerun_that -- shit'
+command -v thefuck >/dev/null 2>&1 || alias thefuck='rerun_that -- shit'
 
 alias shit='rerun_that -- shit'
 alias bork='rerun_that -- bork'
