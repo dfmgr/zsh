@@ -46,6 +46,19 @@ msys* | Win* | MINGW* | CYGWIN*)
   readonly PS_SYMBOL=" 👽 "
   ;;
 esac
+# plugins must be set BEFORE sourcing oh-my-zsh
+plugins=(
+  asdf
+  git
+  vscode
+  vundle
+  command-not-found
+  pyenv
+  thefuck
+  tmux
+  zsh_reload
+  zsh-syntax-highlighting
+)
 # load oh-my-zsh
 if [[ -f "$ZSH/oh-my-zsh.sh" ]]; then
   source "$ZSH/oh-my-zsh.sh" 2>/dev/null
@@ -64,20 +77,5 @@ fi
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/themes/powerlevel-10k.zsh.
 [[ ! -f ~/.config/zsh/themes/powerlevel-10k.zsh ]] || source ~/.config/zsh/themes/powerlevel-10k.zsh
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Load plugins
-plugins=(
-  asdf
-  git
-  vscode
-  vundle
-  command-not-found
-  pyenv
-  thefuck
-  tmux
-  vundle
-  zsh_reload
-  zsh-syntax-highlighting
-)
-
+# plugins and highlighters are set above before sourcing oh-my-zsh
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
