@@ -21,7 +21,8 @@ ICON_ERROR="[ ✖ ]"
 ICON_QUESTION="[ ❓ ]"
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Optimized: Use bright ANSI codes for better visibility on both dark and light backgrounds
-printf_color() { printf "%b" "\e[9${2}m" "$1" "\e[0m"; }  # 90-97 range (bright colors)
+# 90-97 range (bright colors)
+printf_color() { printf "%b" "\e[9${2}m" "$1" "\e[0m"; }
 printf_normal() { printf_color "\t\t$1\n" "7"; }
 printf_green() { printf_color "\t\t$1\n" "2"; }
 printf_red() { printf_color "\t\t$1\n" "1"; }
@@ -33,9 +34,8 @@ printf_info() { printf_color "\t\t$ICON_INFO $1\n" 3; }
 printf_success() { printf_color "\t\t$ICON_GOOD $1\n" 2; }
 printf_error() { printf_color "\t\t$ICON_ERROR $1 $2\n" 1; }
 printf_warning() { printf_color "\t\t$ICON_WARN $1\n" 3; }
-printf_question() { printf_color "\t\t$ICON_QUESTION $1 " 6; }
 printf_error_stream() { while read -r line; do printf_error "↳ ERROR: $line"; done; }
-printf_execute_success() { printf_color "\t\t$ICON_ERROR $1  \n" 2; }
+printf_execute_success() { printf_color "\t\t$ICON_GOOD $1  \n" 2; }
 printf_execute_error() { printf_color "\t\t$ICON_ERROR $1 $2 \n" 1; }
 printf_execute_result() {
   if [ "$1" -eq 0 ]; then printf_execute_success "$2"; else printf_execute_error "$2"; fi
@@ -44,18 +44,16 @@ printf_execute_result() {
 printf_execute_error_stream() { while read -r line; do printf_execute_error "↳ ERROR: $line"; done; }
 
 printf_exit() {
-  test -n "$1" && test -z "${1//[0-9]/}" && local color="$1" && shift 1 || local color="1"
+  test -n "$1" && test -z "${1//[0-9]/}" && local code="$1" && shift 1 || local code="1"
   local msg="$*"
-  shift
-  printf_color "\t\t$msg" "$color"
+  printf_color "\t\t$msg" "$code"
   echo ""
-  return 0
+  exit "$code"
 }
 
 printf_help() {
   test -n "$1" && test -z "${1//[0-9]/}" && local color="$1" && shift 1 || local color="4"
   local msg="$*"
-  shift
   echo ""
   printf_color "\t\t$msg\n" "$color"
   echo ""
@@ -65,7 +63,6 @@ printf_help() {
 printf_custom() {
   test -n "$1" && test -z "${1//[0-9]/}" && local color="$1" && shift 1 || local color="5"
   local msg="$*"
-  shift
   printf_color "\t\t$msg" "$color"
   echo ""
 }
@@ -74,46 +71,43 @@ printf_pause() {
   test -n "$1" && test -z "${1//[0-9]/}" && local color="$1" && shift 1 || local color="5"
   local msg="${*:-Press any key to continue}"
   printf_color "\t\t$msg " "$color"
-  read -r -n 1 -s
+  read -k 1 -s
   printf "\n"
 }
 
 printf_read() {
-  set -o pipefail
+  setopt localoptions pipefail
   test -n "$1" && test -z "${1//[0-9]/}" && local color="$1" && shift 1 || local color="6"
-  while read line; do
+  while read -r line; do
     printf_color "\t\t$line" "$color"
   done
   printf "\n"
-  set +o pipefail
 }
 
 printf_readline() {
-  set -o pipefail
+  setopt localoptions pipefail
   test -n "$1" && test -z "${1//[0-9]/}" && local color="$1" && shift 1 || local color="6"
-  while read line; do
+  while read -r line; do
     printf_color "\t\t$line\n" "$color"
   done
-  set +o pipefail
 }
 
 printf_question() {
   test -n "$1" && test -z "${1//[0-9]/}" && local color="$1" && shift 1 || local color="4"
   local msg="$*"
-  shift
   printf_color "\t\t$ICON_QUESTION $msg? " "$color"
 }
 
 printf_custom_question() {
   test -n "$1" && test -z "${1//[0-9]/}" && local color="$1" && shift 1 || local color="1"
   local msg="$*"
-  shift
   printf_color "\t\t$msg " "$color"
 }
 
 printf_answer() {
-  read -e -r -n "${2:-120}" -s "${1:-__ANSWER}"
-  history -s "${1:-$__ANSWER}"
+  local __var="${1:-__ANSWER}"
+  read -s "$__var"
+  print -s "${(P)__var}"
 }
 
 #printf_read_question "color" "message" "maxLines" "answerVar"
@@ -151,29 +145,22 @@ printf_head() {
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # use grc if it's installed or execute the command direct
-if [[ -z "$(command -v grc)" ]]; then
+if (( $+commands[grc] )); then
   if [[ "$USEGRC" = "yes" ]]; then
-    grc() {
-      if [[ -f "$(command -v grc)" ]]; then
-        #grc --colour=auto
-        $(command -v grc) --colour=on "$@"
-      else
-        "$@"
-      fi
-    }
+    grc() { command grc --colour=on "$@"; }
   fi
 fi
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # generate random strings
-if [[ -z "$(command -v random-string)" ]]; then
+if (( ! $+commands[random-string] )); then
   random-string() {
-    cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w "${1:-64}" | head -n 1
+    tr -dc 'a-zA-Z0-9' </dev/urandom | fold -w "${1:-64}" | head -n 1
   }
 fi
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-if [[ -z "$(command -v mkpasswd)" ]]; then
+if (( ! $+commands[mkpasswd] )); then
   mkpasswd() {
-    cat /dev/urandom | tr -dc [:print:] | tr -d '[:space:]\042\047\134' | fold -w "${1:-64}" | head -n 1
+    tr -dc '[:print:]' </dev/urandom | tr -d '[:space:]\042\047\134' | fold -w "${1:-64}" | head -n 1
   }
 fi
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -182,47 +169,37 @@ fuck() {
   TF_CMD=$(
     TF_ALIAS=fuck \
       PYTHONIOENCODING=utf-8 \
-      TF_SHELL_ALIASES=$(alias)
-    thefuck "$(fc -ln -1)"
-  ) && eval "$TF_CMD" && history -s "$TF_CMD"
+      TF_SHELL_ALIASES=$(alias) \
+      thefuck "$(fc -ln -1)"
+  ) && eval "$TF_CMD" && print -s "$TF_CMD"
 }
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Set OS TYPE
+# Set OS TYPE (lazy — call detectos manually when $OS is needed)
 detectos() {
-  OS="$(uname)"
-  case $OS in
-  'Linux')
-    OS='Linux'
-    ;;
-  'FreeBSD')
-    OS='FreeBSD'
-    ;;
-  'WindowsNT')
-    OS='Windows'
-    ;;
-  'Darwin')
-    OS='Mac'
-    ;;
-  'SunOS')
-    OS='Solaris'
-    ;;
-  'AIX') ;;
-  *) ;;
+  case "$OSTYPE" in
+  linux*) OS='Linux' ;;
+  freebsd*) OS='FreeBSD' ;;
+  cygwin* | msys* | mingw*) OS='Windows' ;;
+  darwin*) OS='Mac' ;;
+  solaris*) OS='Solaris' ;;
+  aix* | *) ;;
   esac
 }
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-#Set OS Detection
+#Set OS Detection (lazy — call detectostype manually when $DISTRO is needed)
 detectostype() {
-  arch=$(uname -m)
-  kernel=$(uname -r)
+  local arch="$CPUTYPE"
+  local kernel=$(uname -r)
+  local distroname
+  local CODENAME
   if [ -n "$(command -v lsb_release)" ]; then
     distroname=$(lsb_release -s -d)
   elif [ -f "/etc/os-release" ]; then
     distroname=$(grep PRETTY_NAME /etc/os-release | sed 's/PRETTY_NAME=//g' | tr -d '="')
   elif [ -f "/etc/debian_version" ]; then
-    distroname="Debian $(cat /etc/debian_version)"
+    distroname="Debian $(</etc/debian_version)"
   elif [ -f "/etc/redhat-release" ]; then
-    distroname=$(cat /etc/redhat-release)
+    distroname=$(</etc/redhat-release)
   else
     distroname="$(uname -s) $(uname -r)"
   fi
@@ -257,8 +234,3 @@ detectostype() {
     DISTROID="$(grep ID_LIKE /etc/os-release | sed 's/^.*=//')"
   fi
 }
-# - -- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-detectos
-detectostype
-unset -f detectos detectostype
-# - -- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
