@@ -13,9 +13,21 @@
 # @Other         :
 # @Resource      :
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-showcputemp() { awk -v t="$(cat /sys/class/thermal/thermal_zone0/temp)" 'BEGIN{print t/1000}'; }
+showcputemp() {
+  if [[ "$OSTYPE" != linux* ]]; then
+    printf_warning "showcputemp is only supported on Linux"
+    return 1
+  fi
+  awk -v t="$(</sys/class/thermal/thermal_zone0/temp)" 'BEGIN{print t/1000}'
+}
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 showsysteminfo() {
+  if [[ "$OSTYPE" != linux* ]]; then
+    printf_warning "showsysteminfo is only supported on Linux"
+    return 1
+  fi
+  local LIGHTRED=$'\e[91m'
+  local NC=$'\e[0m'
   echo ""
   echo -e "\t\t${LIGHTRED}   CPU:$NC"
   sed -nr 's/model name[^:*]: (.*)/\t\t\t\1/p' /proc/cpuinfo
@@ -31,9 +43,9 @@ showsysteminfo() {
   echo -ne "\t\t${LIGHTRED}UPTIME:$NC\t"
   uptime -p
   echo -ne "\t\t${LIGHTRED} USERS:$NC\t"
-  w -h | awk '{print $1}' | uniq | awk '{users=users$1" "}END{print users}'
+  w -h | awk '{if (!seen[$1]++) users=users $1" "}END{print users}'
   echo -ne "\t\t${LIGHTRED}  DISK:$NC"
-  df -h | grep -e"/dev/sd" -e"/mnt/" | awk '{print "\t"$0}'
+  df -h | grep -E '/dev/(sd|nvme|mmcblk)|/mnt/' | awk '{print "\t"$0}'
   echo ""
 }
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
