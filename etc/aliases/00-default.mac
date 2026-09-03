@@ -1,19 +1,26 @@
 #!/usr/bin/env sh
 # shellcheck shell=sh
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-##@Version       : 202303022155-git
-# @Author        : Jason Hempstead
-# @Contact       : jason@casjaysdev.pro
-# @License       : LICENSE.md
-# @ReadME        : README.md
-# @Copyright     : Copyright: (c) 2023 Jason Hempstead, CasjaysDev
-# @Created       : Thursday, Mar 02, 2023 21:54 EDT
-# @File          : 00-default.mac
-# @Description   :
-# @TODO          :
-# @Other         :
-# @Resource      :
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# - - - - - - - - - - - - - - - - - - - - - - - -
+##@Version           :  202303022155-git
+# @@Author           :  Jason Hempstead
+# @@Contact          :  git-admin@casjaysdev.pro
+# @@License          :  WTFPL
+# @@ReadME           :  README.md
+# @@Copyright        :  Copyright: (c) 2023 Jason Hempstead, Casjays Developments
+# @@Created          :  Thursday, Mar 02, 2023 21:54 EDT
+# @@File             :  00-default.mac
+# @@Description      :  Default macOS shell aliases for system, sudo, git, ssh, and utility commands
+# @@Changelog        :  Standardized header block to the new @@ template
+# @@TODO             :
+# @@Other            :
+# @@Resource         :
+# @@Terminal App     :  no
+# @@sudo/root        :  yes
+# @@Template         :  shell/sh
+# - - - - - - - - - - - - - - - - - - - - - - - -
+# shellcheck disable=SC1001,SC1003,SC2001,SC2003,SC2016,SC2031,SC2090,SC2115,SC2120,SC2155,SC2199,SC2229,SC2317,SC2329
+# - - - - - - - - - - - - - - - - - - - - - - - -
+VERSION="202303022155-git"
 # System Aliases
 command -v gdate >/dev/null 2>&1 && alias date='gdate '
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
