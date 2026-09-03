@@ -3,30 +3,12 @@ if [[ -f "$HOME/.config/zsh/profile/00-exports.zsh" ]]; then
   source "$HOME/.config/zsh/profile/00-exports.zsh"
 fi
 
-## zsnap install/update
-# if [[ -d "$HOME/.local/share/zsh/zsnap/.git" ]]; then
-#   echo "Updating zsh-snap"
-#   git -C "$HOME/.local/share/zsh/zsnap" pull &>/dev/null
-# elif [[ ! -d "$HOME/.local/share/zsh/zsnap/.git" ]]; then
-#   echo "Installing zsh-snap"
-#   git clone -q "https://github.com/marlonrichert/zsh-snap" "$HOME/.local/share/zsh/zsnap" &>/dev/null
-# fi
-
-## zplug install/update
-# if [[ -d "$HOME/.local/share/zsh/zplug/.git" ]]; then
-#   echo "Updating zplug"
-#   git -C "$HOME/.local/share/zsh/zplug" pull &>/dev/null
-# elif [[ ! -d "$HOME/.local/share/zsh/zplug/.git" ]]; then
-#   echo "Installing zplug"
-#   git clone -q "https://github.com/zplug/zplug" "$HOME/.local/share/zsh/zplug" &>/dev/null
-# fi
-
 ## oh-my-zsh install/update
 if [[ -d "$HOME/.local/share/zsh/plugins/oh-my-zsh/.git" ]]; then
-  echo "Updating oh-my-sh plugin and themes"
+  echo "Updating oh-my-zsh plugin and themes"
   git -C "$HOME/.local/share/zsh/plugins/oh-my-zsh" pull &>/dev/null
 elif [[ ! -d "$HOME/.local/share/zsh/plugins/oh-my-zsh/.git" ]]; then
-  echo "Installing oh-my-sh plugin and themes"
+  echo "Installing oh-my-zsh plugin and themes"
   git clone -q "https://github.com/robbyrussell/oh-my-zsh" "$HOME/.local/share/zsh/plugins/oh-my-zsh" &>/dev/null
 fi
 
