@@ -45,7 +45,6 @@ BUILD_NAME="$APPNAME"
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Set bash options
 trap 'retVal=$?;trap_exit' ERR EXIT SIGINT
-#if [ ! -t 0 ] && { [ "$1" = --term ] || [ $# = 0 ]; }; then { [ "$1" = --term ] && shift 1 || true; } && TERMINAL_APP="TRUE" myterminal -e "$APPNAME $*" && exit || exit 1; fi
 [ "$1" = "--debug" ] && set -x && export SCRIPT_OPTS="--debug" && export _DEBUG="on"
 [ "$1" = "--raw" ] && export SHOW_RAW="true"
 set -o pipefail
@@ -65,8 +64,9 @@ if [ -f "$PWD/$SCRIPTSFUNCTFILE" ]; then
 elif [ -f "$SCRIPTSFUNCTDIR/$SCRIPTSFUNCTFILE" ]; then
   . "$SCRIPTSFUNCTDIR/$SCRIPTSFUNCTFILE"
 elif connect_test; then
-  curl -q -LSsf "$SCRIPTSFUNCTURL/$SCRIPTSFUNCTFILE" -o "/tmp/$SCRIPTSFUNCTFILE" || exit 1
-  . "/tmp/$SCRIPTSFUNCTFILE"
+  tmpFunctFile="$(mktemp)"
+  curl -q -LSsf "$SCRIPTSFUNCTURL/$SCRIPTSFUNCTFILE" -o "$tmpFunctFile" || exit 1
+  . "$tmpFunctFile"
 else
   echo "Can not load the functions file: $SCRIPTSFUNCTDIR/$SCRIPTSFUNCTFILE" 1>&2
   exit 90
@@ -101,7 +101,7 @@ __kill() { __kill_process_id "$1" || __kill_process_name "$1" || { ! __app_is_ru
 __replace_all() { [ -n "$3" ] && [ -e "$3" ] && find "$3" -not -path "$3/.git/*" -type f -exec $sed -i "s|$1|$2|g" {} \; >/dev/null 2>&1 || return 1; }
 __kill_process_name() { local pid="$(pidof "$1" 2>/dev/null)" && { [ -z "$pid" ] || { kill -19 $pid &>/dev/null && ! __app_is_running "$1" && return 0; } || kill -9 $pid &>/dev/null; } || return 1; }
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-sed="$(builtin type -P gsed 2>/dev/null || builtin type -P sed 2>/dev/null || return)"
+sed="$(builtin type -P gsed 2>/dev/null || builtin type -P sed 2>/dev/null || exit 1)"
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Script options IE: --help --version
 show_optvars "$@"
@@ -116,8 +116,6 @@ unsupported_oses
 # get sudo credentials
 sudorun "true"
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Requires root - restarting with sudo
-#sudoreq "$0 *"
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Make sure the scripts repo is installed
 scripts_check
@@ -131,8 +129,6 @@ trap_exit
 # Initialize the installer
 dfmgr_run_init
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Do not update
-#installer_noupdate "$@"
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Defaults
 APPNAME="zsh"
@@ -190,7 +186,7 @@ __run_post_message() {
 __run_pre_install() {
   local getRunStatus=0
   [ -d "$APPDIR" ] || __mkdir "$APPDIR"
-  [ -L "$HOME/.zshrc" ] && unlink -f "$HOME/.zshrc"
+  [ -L "$HOME/.zshrc" ] && rm -f "$HOME/.zshrc"
   [ -e "$HOME/.zshrc" ] && __mv_f "$HOME/.zshrc" "$APPDIR/zshrc.orig.bak"
   return $getRunStatus
 }
@@ -209,7 +205,7 @@ __run_post_install() {
     __symlink "$APPDIR/zshrc" "$HOME/.zshrc"
   fi
   if [ -f "$APPDIR/install_plugins.zsh" ]; then
-    zsh -c "$APPDIR/install_plugins.zsh" || false
+    zsh -c "$APPDIR/install_plugins.zsh"
     if [ $? -ne 0 ]; then
       printf '%s\n' "failed to install zsh plugins" >&2
       return 1
@@ -227,6 +223,7 @@ __custom_plugin() {
   else
     execute "git_clone https://github.com/robbyrussell/oh-my-zsh $PLUGIN_DIR/oh-my-zsh" "Installing plugin oh-my-zsh"
   fi
+  getRunStatus=$?
   return $getRunStatus
 }
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
