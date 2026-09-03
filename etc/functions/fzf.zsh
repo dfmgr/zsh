@@ -1,3 +1,4 @@
+#!/usr/bin/env zsh
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ##@Version       : 202103212043-git
 # @Author        : Jason Hempstead
@@ -12,10 +13,18 @@
 # @Other         :
 # @Resource      :
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-__fd() { fd "$@" || fdfind "$@"; }
+if (( $+commands[fd] )); then
+  __fd() { fd "$@"; }
+elif (( $+commands[fdfind] )); then
+  __fd() { fdfind "$@"; }
+fi
 open_with_fzf() {
-    __fd -t f -H -I | fzf -m --preview="xdg-mime query default {}" | xargs -ro -d "\n" xdg-open 2>&-
+  __fd -t f -H -I | fzf -m --preview="xdg-mime query default {}" | while IFS= read -r file; do
+    xdg-open "$file" 2>&-
+  done
 }
 cd_with_fzf() {
-    cd "$HOME" && cd "$(__fd -t d | fzf --preview="tree -L 1 {}" --bind="space:toggle-preview" --preview-window=:hidden)"
+  local dir
+  dir="$(__fd -t d | fzf --preview="tree -L 1 {}" --bind="space:toggle-preview" --preview-window=:hidden)"
+  [[ -n "$dir" ]] && cd "$dir"
 }
