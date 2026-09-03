@@ -27,12 +27,12 @@ autoload -U bashcompinit
 bashcompinit
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # ensure exports is loaded
-if [ -f "$HOME/.config/zsh/profile/00-exports.zsh" ]; then
+if [[ -f "$HOME/.config/zsh/profile/00-exports.zsh" ]]; then
   source "$HOME/.config/zsh/profile/00-exports.zsh"
 fi
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # include .profile if it exists
-if [ -f "$HOME/.profile" ]; then
+if [[ -f "$HOME/.profile" ]]; then
   source "$HOME/.profile"
 fi
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -41,16 +41,17 @@ path=("$HOME/.local/bin" $path)
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # enable brew.sh completions
 if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+  FPATH="$(brew --prefix)/share/zsh-completions:$FPATH"
 fi
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Add user functions to $fpath
 fpath=("$HOME/.config/zsh/functions" $fpath)
 setopt null_glob
-for function in "$HOME/.config/zsh/functions"/*.zsh(N); do
-  [[ -f "$function" ]] && source "$function" 2>/dev/null
+for funcfile in "$HOME/.config/zsh/functions"/*.zsh(N); do
+  [[ -f "$funcfile" ]] && source "$funcfile" 2>/dev/null
 done
 unsetopt null_glob
+unset funcfile
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Load all files from .config/zsh/profile directory
 if [[ -d "$HOME/.config/zsh/profile" ]]; then
@@ -90,9 +91,6 @@ ZSH_AUTOSUGGEST_USE_ASYNC=1
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Set title - function set
 DISABLE_AUTO_TITLE="true"
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Accept the current autosuggestion
-#bindkey "^ " autosuggest-accept
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Perform history expansion and insert a space
 bindkey " " magic-space
@@ -141,12 +139,12 @@ fi
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Source users file server
 if [[ -f "$HOME/.config/local/zsh.servers.local" ]]; then
-  source "$HOME/.config/local/zsh.server.local" 2>/dev/null
+  source "$HOME/.config/local/zsh.servers.local" 2>/dev/null
 fi
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Source system specific
-if [[ -f "$HOME/.config/local/zsh.$(hostname).local" ]]; then
-  source "$HOME/.config/local/zsh.$(hostname).local" 2>/dev/null
+if [[ -f "$HOME/.config/local/zsh.$HOSTNAME.local" ]]; then
+  source "$HOME/.config/local/zsh.$HOSTNAME.local" 2>/dev/null
 fi
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 export ZSHRCSRC="$HOME/.zshrc"
