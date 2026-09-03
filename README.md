@@ -66,7 +66,7 @@ brew install zsh
 ```shell
 mv -fv "$HOME/.config/zsh" "$HOME/.config/zsh.bak"
 git clone https://github.com/dfmgr/zsh "$HOME/.config/zsh"
-ln -sf "$HOME/.config/zsh/zshrc" "$HOME/.zshrc"
+ln -sf "$HOME/.config/zsh/etc/zshrc" "$HOME/.zshrc"
 git_clone https://github.com/robbyrussell/oh-my-zsh $HOME/.local/share/oh-my-zsh
 git_clone https://github.com/zsh-users/zsh-syntax-highlighting $HOME/.local/share/oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 git_clone https://github.com/bhilburn/powerlevel9k.git $HOME/.local/share/oh-my-zsh/custom/themes/powerlevel9k
