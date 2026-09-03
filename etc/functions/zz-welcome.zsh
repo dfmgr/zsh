@@ -24,9 +24,10 @@ show_welcome() {
     printf_green "If you configured tor you can run"
     printf_green "the command show_welcome_tor"
     printf_green "\n"
-    ask_for_confirmation "Show this message again?"
+    printf_question "Show this message again"
+    printf_answer
     printf "\n"
-    if ! answer_is_yes; then
+    if ! printf_answer_yes; then
       touch "$HOME/.config/zsh/welcome.msg"
     fi
   fi
@@ -44,9 +45,10 @@ show_welcome_tor() {
           printf_green "$(sudo cat /var/lib/tor/hidden_service/hostname)"
           printf_info "The hostname has been saved to $HOME/tor_hostname"
           sudo cat /var/lib/tor/hidden_service/hostname >"$HOME/tor_hostname"
-          ask_for_confirmation "Show this message again?"
+          printf_question "Show this message again"
+          printf_answer
           printf "\n"
-          if ! answer_is_yes; then
+          if ! printf_answer_yes; then
             touch "$HOME/.config/zsh/welcome_tor.msg"
           fi
         fi
