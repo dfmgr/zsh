@@ -23,9 +23,9 @@ alias cd..='builtin cd ..'
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # System Aliases
 alias :q='exit'
-alias :w='history -a'
+alias :w='if [ -n "$ZSH_VERSION" ]; then fc -AI; else history -a; fi'
 alias c='clear'
-alias ch='history -c &>/dev/null && history -w &>/dev/null'
+alias ch='if [ -n "$ZSH_VERSION" ]; then fc -p; else history -c &>/dev/null && history -w &>/dev/null; fi'
 alias e='vim -- '
 alias g='git '
 alias ll='ls -l '
@@ -78,7 +78,6 @@ alias edit='vim '
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #Fun alias
 alias tw='rainbowstream -iot '
-alias twitter='twitter '
 alias weather='wttrin '
 alias weather2='wttrin2 '
 alias command-not-found='fuck '
