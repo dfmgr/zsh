@@ -13,12 +13,11 @@
 # @Other         :
 # @Resource      :
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-if [ -f "$(command -v brew)" ]; then brew() { brew "$@"; }; fi
-if [ -f "$(command -v apt)" ]; then apt() { sudo -H apt "$@"; }; fi
-if [ -f "$(command -v dnf)" ]; then dnf() { sudo -H dnf "$@"; }; fi
-if [ -f "$(command -v yum)" ]; then yum() { sudo -H yum "$@"; }; fi
-if [ -f "$(command -v pamac)" ]; then pamac() { sudo -H pamac "$@"; }; fi
-if [ -f "$(command -v pacman)" ]; then pacman() { sudo -H pacman "$@"; }; fi
-if [ -f "$(command -v apt-get)" ]; then apt-get() { sudo -H apt-get "$@"; }; fi
-if [ -f "$(command -v xbps-install)" ]; then xbps-install() { sudo -H xbps-install "$@"; }; fi
+if (( $+commands[apt] )); then apt() { sudo -H apt "$@"; }; fi
+if (( $+commands[dnf] )); then dnf() { sudo -H dnf "$@"; }; fi
+if (( $+commands[yum] )); then yum() { sudo -H yum "$@"; }; fi
+if (( $+commands[pamac] )); then pamac() { sudo -H pamac "$@"; }; fi
+if (( $+commands[pacman] )); then pacman() { sudo -H pacman "$@"; }; fi
+if (( $+commands[apt-get] )); then apt-get() { sudo -H apt-get "$@"; }; fi
+if (( $+commands[xbps-install] )); then xbps-install() { sudo -H xbps-install "$@"; }; fi
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
