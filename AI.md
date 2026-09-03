@@ -152,26 +152,46 @@ indistinguishable from existing code.
 
 ### 2.1 File headers
 
-Every `.zsh` script in this repo starts with a standardized header. New
-scripts MUST follow the same template:
+Every `.zsh` script in this repo starts with a standardized header. All
+scripts (new and existing) MUST follow this template:
 
 ```zsh
 #!/usr/bin/env zsh
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-##@Version       : YYYYMMDDHHMM-git
-# @Author        : Jason Hempstead
-# @Contact       : jason@casjaysdev.pro
-# @License       : LICENSE.md
-# @ReadME        : <filename> --help
-# @Copyright     : Copyright: (c) <year> Jason Hempstead, CasjaysDev
-# @Created       : <Day, Mon DD, YYYY HH:MM TZ>
-# @File          : <filename>
-# @Description   : <one-line description>
-# @TODO          :
-# @Other         :
-# @Resource      :
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# - - - - - - - - - - - - - - - - - - - - - - - - -
+##@Version           :  %Y%m%d%H%M-git
+# @@Author           :  Jason Hempstead
+# @@Contact          :  git-admin@casjaysdev.pro
+# @@License          :  WTFPL
+# @@ReadME           :  {scriptname --help | README.md}
+# @@Copyright        :  Copyright: (c) {year} Jason Hempstead, Casjays Developments
+# @@Created          :  {Weekday, Month DD, YYYY HH:MM TZ}
+# @@File             :  {file_name}
+# @@Description      :  {short one-sentence description}
+# @@Changelog        :  {short one-sentence changelog message}
+# @@TODO             :  {short list of TODOs}
+# @@Other            :  {anything that doesn't fit another field}
+# @@Resource         :  {short list of resources, e.g. Stack Overflow links}
+# @@Terminal App     :  {yes|no}
+# @@sudo/root        :  {yes|no}
+# @@Template         :  {template name, or shell/zsh if no template}
+# - - - - - - - - - - - - - - - - - - - - - - - - -
+# shellcheck disable=all
+# - - - - - - - - - - - - - - - - - - - - - - - - -
+VERSION="YYYYMMDDHHMM-git"
 ```
+
+- **All scripts in this repo are licensed under WTFPL** — always
+  `# @@License          :  WTFPL`; never MIT, Apache, or another license,
+  except for already-flagged vendored/third-party files (see
+  `TODO.AI.md`, e.g. `etc/themes/powerlevel-10k.zsh`), which keep their
+  original header untouched.
+- `##@Version` uses double `#`; every other field uses single `#` with a
+  double `@@` prefix.
+- `VERSION="YYYYMMDDHHMM-git"` is the literal placeholder for new scripts.
+  Never revert an already-stamped real timestamp back to the placeholder.
+  When editing an existing script, update both the `##@Version` header line
+  and the first `VERSION=` assignment after the header to the current
+  timestamp (`date +'%Y%m%d%H%M-git'`).
 
 The top-level `install.sh` uses the extended `@@`-prefixed variant with a
 bash shebang (it's the installer, not a zsh script) — match that template
@@ -183,7 +203,9 @@ for installer edits.
   portability across distros where zsh lives outside `/bin`).
 - DO NOT add `# shellcheck shell=bash` to zsh files. Shellcheck does not
   support zsh; the directive mislabels the dialect and invites bash-only
-  rewrites.
+  rewrites. Instead, after the header block, always include
+  `# shellcheck disable=all` wrapped by the separator line (see §2.1
+  template).
 - Syntax check after editing: `zsh -n <file>`.
 - There is no reliable zsh linter. Rely on `zsh -n`, manual review, and
   interactive testing (`zsh -l` in a throwaway session).
