@@ -11,7 +11,7 @@ install:
   - pkmgr update
   - sudo dotfiles admin scripts
   - dotfiles install zsh
-  - bash -c "[ -f $(command -v zsh >/dev/null 2>&1) ] && timeout --signal=9 --foreground --preserve-status 5 zsh || true"
+  - bash -c "command -v zsh >/dev/null 2>&1 && timeout --signal=9 --foreground --preserve-status 5 zsh || true"
 
 matrix:
   include:
