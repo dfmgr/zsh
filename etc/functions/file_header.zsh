@@ -14,8 +14,12 @@
 # @Resource      :
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 file_header() {
+  if [[ -z "$1" ]]; then
+    echo "file_header: missing file argument" >&2
+    return 1
+  fi
   printf '# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n'
-  grep ^'?*#.@.*  :' "$1" | grep '  :' | grep -Ev 'GEN_SCRIPTS_*_' | head -n${2:-12} | grep '^'
+  grep '^?*#.@.*  :' "$1" | grep -Ev 'GEN_SCRIPTS_*_' | head -n"${2:-12}"
   printf '# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n'
 }
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
