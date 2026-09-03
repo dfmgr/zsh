@@ -13,25 +13,25 @@
 # @Other         :
 # @Resource      :
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-case "$(uname -s)" in
-CYGWIN* | MINGW32* | MSYS* | MINGW*)
-  if [ -f "$HOME/.config/misc/shell/aliases/00-default.win" ]; then
+case "$OSTYPE" in
+cygwin* | msys* | mingw*)
+  if [[ -f "$HOME/.config/misc/shell/aliases/00-default.win" ]]; then
     source "$HOME/.config/misc/shell/aliases/00-default.win"
-  elif [ -f "$HOME/.config/zsh/aliases/00-default.win" ]; then
+  elif [[ -f "$HOME/.config/zsh/aliases/00-default.win" ]]; then
     source "$HOME/.config/zsh/aliases/00-default.win"
   fi
   ;;
-Darwin)
-  if [ -f "$HOME/.config/misc/shell/aliases/00-default.mac" ]; then
+darwin*)
+  if [[ -f "$HOME/.config/misc/shell/aliases/00-default.mac" ]]; then
     source "$HOME/.config/misc/shell/aliases/00-default.mac"
-  elif [ -f "$HOME/.config/zsh/aliases/00-default.mac" ]; then
+  elif [[ -f "$HOME/.config/zsh/aliases/00-default.mac" ]]; then
     source "$HOME/.config/zsh/aliases/00-default.mac"
   fi
   ;;
-Linux)
-  if [ -f "$HOME/.config/misc/shell/aliases/00-default.lin" ]; then
+linux*)
+  if [[ -f "$HOME/.config/misc/shell/aliases/00-default.lin" ]]; then
     source "$HOME/.config/misc/shell/aliases/00-default.lin"
-  elif [ -f "$HOME/.config/zsh/aliases/00-default.lin" ]; then
+  elif [[ -f "$HOME/.config/zsh/aliases/00-default.lin" ]]; then
     source "$HOME/.config/zsh/aliases/00-default.lin"
   fi
   ;;
@@ -40,7 +40,7 @@ Linux)
   ;;
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 esac
-if [ -f "$HOME/.config/misc/shell/aliases/00-aliases.sh" ]; then
+if [[ -f "$HOME/.config/misc/shell/aliases/00-aliases.sh" ]]; then
   source "$HOME/.config/misc/shell/aliases/00-aliases.sh"
 fi
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
