@@ -1,4 +1,18 @@
 #!/usr/bin/env zsh
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+##@Version       : 202103251632-git
+# @Author        : Jason Hempstead
+# @Contact       : jason@casjaysdev.pro
+# @License       : LICENSE.md
+# @ReadME        : README.md
+# @Copyright     : Copyright: (c) 2021 Jason Hempstead, CasjaysDev
+# @Created       : Thursday, Mar 25, 2021 16:32 EDT
+# @File          : 00-exports.zsh
+# @Description   : Core zsh/oh-my-zsh path and history exports
+# @TODO          :
+# @Other         :
+# @Resource      :
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 export ZSH="$HOME/.local/share/zsh/plugins/oh-my-zsh"
 export ZSH_CUSTOM="$HOME/.local/share/zsh/plugins/oh-my-zsh/custom"
 export ZSH_CACHEDIR="$HOME/.cache/oh-my-zsh"
