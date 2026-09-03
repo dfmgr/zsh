@@ -21,7 +21,7 @@ getpythonver() {
   elif [[ "$(python2 -V 2>/dev/null)" =~ "Python 2" ]]; then
     PYTHONVER="python"
     PIP="pip"
-    export PATH="${PATH}:$(python -c 'import site; print(site.USER_BASE)')/bin"
+    export PATH="${PATH}:$(python2 -c 'import site; print(site.USER_BASE)')/bin"
   fi
 }
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
