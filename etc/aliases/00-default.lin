@@ -19,9 +19,9 @@
 alias q='exit '
 alias :q='exit '
 alias :q!='exit '
-alias :w='history -a '
+alias :w='if [ -n "$ZSH_VERSION" ]; then fc -AI; else history -a; fi '
 alias c='clear '
-alias ch='history -c &>/dev/null && history -w &>/dev/null '
+alias ch='if [ -n "$ZSH_VERSION" ]; then fc -p; else history -c &>/dev/null && history -w &>/dev/null; fi '
 alias g='git '
 alias m='man '
 alias map='xargs -n1 '
@@ -149,15 +149,18 @@ fi
 command -v minikube >/dev/null 2>&1 && alias kubectl='minikube kubectl '
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # trash aliases.
-command -v trash >/dev/null 2>&1 && alias empty-trash='trash empty ' || alias empty-trash='rm -Rf ~/.local/share/Trash/files/* && ~/.local/share/Trash/files/info/* '
+command -v trash >/dev/null 2>&1 && alias empty-trash='trash empty ' || alias empty-trash='rm -Rf ~/.local/share/Trash/files/* && rm -Rf ~/.local/share/Trash/files/info/* '
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Hide/show icons.
 command -v gsettings >/dev/null 2>&1 && alias desktop-icons-hide='gsettings set org.gnome.desktop.background show-desktop-icons false '
 command -v gsettings >/dev/null 2>&1 && alias desktop-icons-show='gsettings set org.gnome.desktop.background show-desktop-icons true '
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Lock Screen
-command -v xflock4 >/dev/null 2>&1 && alias afk='xflock4 '
-command -v gnome-screensaver-command >/dev/null 2>&1 && alias afk='gnome-screensaver-command --lock '
+if command -v xflock4 >/dev/null 2>&1; then
+  alias afk='xflock4 '
+elif command -v gnome-screensaver-command >/dev/null 2>&1; then
+  alias afk='gnome-screensaver-command --lock '
+fi
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # logout
 command -v xfce4-session-logout >/dev/null 2>&1 && alias logout='xfce4-session-logout '
@@ -185,21 +188,22 @@ command -v spotifyd >/dev/null 2>&1 && alias spotify='spotifyd '
 command -v pianobar >/dev/null 2>&1 && alias pandora='pianobar '
 command -v tizonia >/dev/null 2>&1 && alias cloudplayer='tizonia '
 command -v youtube-viewer >/dev/null 2>&1 && alias youtube='youtube-viewer '
-command -v mpc >/dev/null 2>&1 && [ -z "$MPDSERVER" ] && alias mpc='mpc ' || alias mpc='mpc -h "$MPDSERVER" '
+if command -v mpc >/dev/null 2>&1; then
+  [ -z "$MPDSERVER" ] && alias mpc='mpc ' || alias mpc='mpc -h "$MPDSERVER" '
+fi
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Python
-command -v pipx >/dev/null 2>&1 || alias pipx='pip install -U pipx && alias pipx="pipx" '
+command -v pipx >/dev/null 2>&1 || alias pipx='pip install -U pipx && \pipx '
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Other
 command -v anime-dl >/dev/null 2>&1 && alias anime-cli='anime-dl '
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # list functions
-alias list-my-functions='typeset -F | less '
+alias list-my-functions='if [ -n "$ZSH_VERSION" ]; then functions | less; else typeset -F | less; fi '
 alias list-my-aliases='alias | less '
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #Fun alias
 alias tw='rainbowstream -iot '
-alias twitter='twitter '
 alias mylatlong='mylocation | grep --color=none "LAT\|LON" '
 alias emj='emojis '
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
