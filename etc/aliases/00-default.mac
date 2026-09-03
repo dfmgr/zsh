@@ -20,9 +20,9 @@ command -v gdate >/dev/null 2>&1 && alias date='gdate '
 alias q='exit '
 alias :q='exit '
 alias :q!='exit '
-alias :w='history -a '
+alias :w='if [ -n "$ZSH_VERSION" ]; then fc -AI; else history -a; fi '
 alias c='clear '
-alias ch='history -c &>/dev/null && history -w &>/dev/null '
+alias ch='if [ -n "$ZSH_VERSION" ]; then fc -p; else history -c &>/dev/null && history -w &>/dev/null; fi '
 alias g='git '
 alias m='man '
 alias map='xargs -n1 '
@@ -32,8 +32,6 @@ alias t='tmux '
 alias bashrc='clear && source ~/.bashrc '
 alias inputrc='bind -f ~/.inputrc '
 alias tailf='tail -f '
-alias ipconfig='ifconfig '
-alias systemctl='sudo systemctl '
 alias mount='mount -l '
 alias h='history '
 alias j='jobs -l '
@@ -63,7 +61,6 @@ alias fastboot='sudo fastboot '
 alias ipconfig='sudo ifconfig '
 alias systemctl='sudo systemctl '
 alias ports='sudo netstat -taupln | grep --color=auto LISTEN '
-alias flushdns='sudo systemd-resolve --flush-caches '
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # ssh aliases
 [ -n "$DISPLAY" ] && alias ssh='ssh -X' || alias ssh='ssh '
@@ -136,23 +133,16 @@ command -v spotifyd >/dev/null 2>&1 && alias spotify='spotifyd '
 command -v pianobar >/dev/null 2>&1 && alias pandora='pianobar '
 command -v tizonia >/dev/null 2>&1 && alias cloudplayer='tizonia '
 command -v youtube-viewer >/dev/null 2>&1 && alias youtube='youtube-viewer '
-command -v mpc >/dev/null 2>&1 && [ -z "$MPDSERVER" ] && alias mpc='mpc ' || alias mpc='mpc -h "$MPDSERVER" '
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# android dev
-alias fastboot='sudo fastboot '
-alias adb='sudo adb '
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# netstat aliases
-alias ports='sudo netstat -tau | grep LISTEN '
-alias netstat='sudo netstat '
+if command -v mpc >/dev/null 2>&1; then
+  [ -z "$MPDSERVER" ] && alias mpc='mpc ' || alias mpc='mpc -h "$MPDSERVER" '
+fi
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # list functions
-alias list-my-functions='typeset -F | less '
+alias list-my-functions='if [ -n "$ZSH_VERSION" ]; then functions | less; else typeset -F | less; fi '
 alias list-my-aliases='alias | less '
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #Fun alias
 alias tw='rainbowstream -iot '
-alias twitter='twitter '
 alias mylatlong='mylocation | grep -E "LAT | LON" '
 alias emj='emojis '
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
