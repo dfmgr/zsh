@@ -1,3 +1,25 @@
+#!/usr/bin/env zsh
+# - - - - - - - - - - - - - - - - - - - - - - - -
+##@Version           :  202609031423-git
+# @@Author           :  Jason Hempstead
+# @@Contact          :  git-admin@casjaysdev.pro
+# @@License          :  WTFPL
+# @@ReadME           :  README.md
+# @@Copyright        :  Copyright: (c) 2021 Jason Hempstead, Casjays Developments
+# @@Created          :  Wednesday, Aug 25, 2021 01:07 UTC
+# @@File             :  install_plugins.zsh
+# @@Description      :  Clones or updates oh-my-zsh and its plugins/themes
+# @@Changelog        :  Added the new @@ template header (file had none)
+# @@TODO             :
+# @@Other            :
+# @@Resource         :
+# @@Terminal App     :  no
+# @@sudo/root        :  no
+# @@Template         :  shell/zsh
+# - - - - - - - - - - - - - - - - - - - - - - - -
+# shellcheck disable=all
+# - - - - - - - - - - - - - - - - - - - - - - - -
+VERSION="202609031423-git"
 ## List of plugins/themes to clone/update
 if [[ -f "$HOME/.config/zsh/profile/00-exports.zsh" ]]; then
   source "$HOME/.config/zsh/profile/00-exports.zsh"

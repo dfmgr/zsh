@@ -1,18 +1,25 @@
 #!/usr/bin/env zsh
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-##@Version       : 202103212043-git
-# @Author        : Jason Hempstead
-# @Contact       : jason@casjaysdev.pro
-# @License       : MIT
-# @ReadME        : goto.zsh
-# @Copyright     : Copyright (c) 2018 Lazarus Lazaridis
-# @Created       : Sunday, Mar 21, 2021 20:43 EDT
-# @File          : goto.zsh
-# @Description   :
-# @TODO          :
-# @Other         :
-# @Resource      : https://github.com/iridakos/goto
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# - - - - - - - - - - - - - - - - - - - - - - - -
+##@Version           :  202609031423-git
+# @@Author           :  Jason Hempstead
+# @@Contact          :  git-admin@casjaysdev.pro
+# @@License          :  MIT
+# @@ReadME           :  goto --help
+# @@Copyright        :  Copyright (c) 2018 Lazarus Lazaridis
+# @@Created          :  Sunday, Mar 21, 2021 20:43 EDT
+# @@File             :  goto.zsh
+# @@Description      :  Bookmark and jump to directories by alias
+# @@Changelog        :  Standardized header block to the new @@ template
+# @@TODO             :
+# @@Other            :  Vendored from iridakos/goto (MIT), license preserved
+# @@Resource         :  https://github.com/iridakos/goto
+# @@Terminal App     :  no
+# @@sudo/root        :  no
+# @@Template         :  shell/zsh
+# - - - - - - - - - - - - - - - - - - - - - - - -
+# shellcheck disable=all
+# - - - - - - - - - - - - - - - - - - - - - - - -
+VERSION="202609031423-git"
 goto() {
   local target
   _goto_resolve_db

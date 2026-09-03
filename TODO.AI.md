@@ -36,3 +36,7 @@ unfixed pending user sign-off.
   third-party vendored/generated output (same treatment as
   completions/fnm.bash in dfmgr/bash), and falls under external-
   contributions handling rather than a normal bugfix pass.
+- etc/themes/powerlevel-09k.zsh: same category as powerlevel-10k.zsh
+  above (theme config, not hand-authored logic) — excluded from the
+  2026-09-03 header-template sweep for the same reason and left
+  completely untouched.

@@ -1,18 +1,25 @@
 #!/usr/bin/env zsh
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-##@Version       : 202103212043-git
-# @Author        : Jason Hempstead
-# @Contact       : jason@casjaysdev.pro
-# @License       : WTFPL
-# @ReadME        : getip.zsh
-# @Copyright     : Copyright: (c) 2021 Jason Hempstead, CasjaysDev
-# @Created       : Sunday, Mar 21, 2021 20:43 EDT
-# @File          : getip.zsh
-# @Description   : Get current IP Address
-# @TODO          :
-# @Other         :
-# @Resource      :
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# - - - - - - - - - - - - - - - - - - - - - - - -
+##@Version           :  202609031423-git
+# @@Author           :  Jason Hempstead
+# @@Contact          :  git-admin@casjaysdev.pro
+# @@License          :  WTFPL
+# @@ReadME           :  README.md
+# @@Copyright        :  Copyright: (c) 2021 Jason Hempstead, Casjays Developments
+# @@Created          :  Sunday, Mar 21, 2021 20:43 EDT
+# @@File             :  getip.zsh
+# @@Description      :  Get current IP address
+# @@Changelog        :  Standardized header block to the new @@ template
+# @@TODO             :
+# @@Other            :
+# @@Resource         :
+# @@Terminal App     :  no
+# @@sudo/root        :  no
+# @@Template         :  shell/zsh
+# - - - - - - - - - - - - - - - - - - - - - - - -
+# shellcheck disable=all
+# - - - - - - - - - - - - - - - - - - - - - - - -
+VERSION="202609031423-git"
 unset NETDEV IFISONLINE CURRIP4 CURRIP6 CURRIP4WAN CURRIP6WAN
 __getip() {
   NETDEV="$(ip route | awk '/default/ {print $5; exit}')"

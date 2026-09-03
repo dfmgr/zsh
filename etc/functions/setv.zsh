@@ -1,15 +1,25 @@
 #!/usr/bin/env zsh
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# @Author      : Sachin (psachin)
-# @Contact     : iclcoolster@gmail.com
-# @File        : show_wifi_clients.zsh
-# @Created     : Mon, Dec 31, 2019, 00:00 EST
-# @License     : WTFPL
-# @Copyright   : Copyright (c) CasjaysDev
-# @Description : shows connected stations in hotspot mode
-#
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# - - - - - - - - - - - - - - - - - - - - - - - -
+##@Version           :  202609031423-git
+# @@Author           :  Sachin (psachin)
+# @@Contact          :  iclcoolster@gmail.com
+# @@License          :  WTFPL
+# @@ReadME           :  README.md
+# @@Copyright        :  Copyright: (c) 2019 Jason Hempstead, Casjays Developments
+# @@Created          :  Monday, Dec 31, 2019 00:00 EST
+# @@File             :  setv.zsh
+# @@Description      :  Lightweight Python virtual environment manager
+# @@Changelog        :  Standardized header block to the new @@ template; corrected mismatched @File/@Description carried over from a different script
+# @@TODO             :
+# @@Other            :  Header previously misidentified this file as show_wifi_clients.zsh; corrected here
+# @@Resource         :
+# @@Terminal App     :  no
+# @@sudo/root        :  no
+# @@Template         :  shell/zsh
+# - - - - - - - - - - - - - - - - - - - - - - - -
+# shellcheck disable=all
+# - - - - - - - - - - - - - - - - - - - - - - - -
+VERSION="202609031423-git"
 
 # setV - A Lightweight Python virtual environment manager.
 # Author: Sachin (psachin) <iclcoolster@gmail.com>

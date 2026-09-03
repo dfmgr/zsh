@@ -1,18 +1,25 @@
 #!/usr/bin/env zsh
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-##@Version       : 202103212043-git
-# @Author        : Jason Hempstead
-# @Contact       : jason@casjaysdev.pro
-# @License       : WTFPL
-# @ReadME        : fzf.zsh --help
-# @Copyright     : Copyright: (c) 2021 Jason Hempstead, CasjaysDev
-# @Created       : Sunday, Mar 21, 2021 20:43 EDT
-# @File          : fzf.zsh
-# @Description   :
-# @TODO          :
-# @Other         :
-# @Resource      :
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# - - - - - - - - - - - - - - - - - - - - - - - -
+##@Version           :  202609031423-git
+# @@Author           :  Jason Hempstead
+# @@Contact          :  git-admin@casjaysdev.pro
+# @@License          :  WTFPL
+# @@ReadME           :  README.md
+# @@Copyright        :  Copyright: (c) 2021 Jason Hempstead, Casjays Developments
+# @@Created          :  Sunday, Mar 21, 2021 20:43 EDT
+# @@File             :  fzf.zsh
+# @@Description      :  fzf-powered open-file and cd helper functions
+# @@Changelog        :  Standardized header block to the new @@ template
+# @@TODO             :
+# @@Other            :
+# @@Resource         :
+# @@Terminal App     :  no
+# @@sudo/root        :  no
+# @@Template         :  shell/zsh
+# - - - - - - - - - - - - - - - - - - - - - - - -
+# shellcheck disable=all
+# - - - - - - - - - - - - - - - - - - - - - - - -
+VERSION="202609031423-git"
 if (( $+commands[fd] )); then
   __fd() { fd "$@"; }
 elif (( $+commands[fdfind] )); then
